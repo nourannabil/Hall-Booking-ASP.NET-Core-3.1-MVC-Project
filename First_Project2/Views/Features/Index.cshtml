@@ -1,0 +1,58 @@
+﻿@model IEnumerable<First_Project2.Models.Feature>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h4>Feature</h4>
+<hr />
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title m-5 text-center">Choose The Category And Hall To See Its Features</h4>
+                </div>
+                <div class="text-right mr-5 mb-2">
+                        <a class="btn btn-success btn-icon btn-sm w-auto p-2 text-dark" asp-action="Create">
+                            Create New
+                        </a>
+                 </div>
+                <div class="card-body">
+                     <form asp-action="Index">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                       
+                        <div class="row">
+                            <div class="col-6 offset-4">
+                                    <div class="form-group">
+                                    <label class="control-label font-weight-bold text-dark text-start position-relative" style="top:30px; right: 134px;">Category Name</label>
+                                    <select class ="form-control border-dark w-75" id="category">
+                                            <option>Please Select Category</option>
+                                    </select>           
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label font-weight-bold text-dark text-start position-relative mt-4 ml-5" style="top:30px; right:150px">Hall Name</label>
+                                        <select class ="form-control border-dark w-75" id="Hall">
+                                        <option>Please Select Hall</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="button" value="See Features" id="see" class="btn btn-info btn-icon btn-sm w-auto p-2 text-light" style="background-color:#4caf50; left: 38%; margin:40px;"/>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/cascade.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+
+

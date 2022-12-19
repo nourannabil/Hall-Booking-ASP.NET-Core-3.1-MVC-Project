@@ -1,0 +1,63 @@
+﻿@model First_Project2.Models.Email
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+
+<body>
+    <div>
+        @using (Html.BeginForm("Index" , "EmailSetUp", FormMethod.Post , new {enctype = "multipart/form-data"}))
+        {
+        <div class="main mt-5">
+            <div class="container vh-100">
+                <div class="col-md-6 mx-auto">
+                    <div class="card h-100 " style=" position: relative; top: 99px; border:2px solid cadetblue; ">
+                        <div class="card-header" style="background-color:cadetblue;">
+                            <h1 class="card-title text-center">Send Email</h1>
+                        </div>
+                        <div class="card-body">
+                            <table>
+                                <tr>
+                                    <td style="width:80px;">
+                                        To :
+                                    </td>
+                                    <td>@Html.TextBoxFor(model => model.To)</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Subject :
+                                    </td>
+                                    <td>@Html.TextBoxFor(model => model.Subject)</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        Body :
+                                    </td>
+                                    <td>@Html.TextAreaFor(model => model.Body , new{ rows="10", cols="23"})</td>
+                                </tr>
+                                <tr>
+                                    <td class="position-absolute" style="margin-left:30%;">
+                                        <input type="submit" value="Send" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+                            <span style="color:green">@ViewBag.Message</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</body>
+</html>

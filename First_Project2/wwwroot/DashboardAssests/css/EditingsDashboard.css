@@ -1,0 +1,93 @@
+﻿::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    background-color: rgb(244 243 239);
+}
+
+.main-panel > .content {
+    min-height: calc(100vh - 170px);
+}
+
+.sidebar .sidebar-wrapper {
+    overflow-x: hidden;
+}
+
+body.sidebar-mini .sidebar, body.sidebar-mini .sidebar .sidebar-wrapper {
+    width: 120px;
+}
+
+    body.sidebar-mini .sidebar .nav p {
+        display: none;
+    }
+
+body.sidebar-mini li {
+    padding-bottom: 23px;
+}
+
+.sidebar .nav .caret {
+    top: 14px;
+    right: 0px;
+}
+
+
+.navbar.navbar-transparent a:not(.dropdown-item):not(.btn) {
+    color: black;
+}
+
+    .navbar.navbar-transparent a:not(.dropdown-item):not(.btn):hover {
+        color: #51cbce;
+    }
+
+.fixed-plugin {
+    top: 180px;
+}
+
+a.nav-link.dropdown-toggle.nn {
+    display: block;
+}
+
+div#navigation {
+    font-size: 28px;
+    color: black;
+}
+
+.navbar.navbar-transparent a:not(.dropdown-item):not(.btn) {
+    text-transform: capitalize;
+    margin-left: 20px;
+}
+
+.user .name {
+    float: right;
+    position: relative;
+    top: -68px;
+    margin-right: 40px;
+    color: #fff;
+}
+
+.arrow-name {
+    position: relative;
+    right: -100px;
+    top: -5PX;
+}
+
+.photo .image {
+    max-width: 30%;
+    border-radius: 50px;
+    margin: 20px;
+}
+
+.info .nav {
+    margin-top: -20px;
+}
+
+.user::after {
+    content: "";
+    position: absolute;
+    right: 15px;
+    height: 1px;
+    width: calc(100% - 30px);
+    background-color: hsla(0,0%,100%,.5);
+}
+

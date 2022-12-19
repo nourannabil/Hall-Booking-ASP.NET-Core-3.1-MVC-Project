@@ -1,0 +1,78 @@
+﻿@model First_Project2.Models.Statistic
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Statistic</h4>
+<hr />
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title m-5">Category Edit</h4>
+                </div>
+                <div class=" card-body text-center">
+                    <div class="container">
+                        <form asp-action="Edit" class="w-50 offset-3">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Id" />
+                            <div class="form-group">
+                                <label asp-for="StartDay" class="control-label"></label>
+                                <input asp-for="StartDay" class="form-control" />
+                                <span asp-validation-for="StartDay" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="EndDay" class="control-label"></label>
+                                <input asp-for="EndDay" class="form-control" />
+                                <span asp-validation-for="EndDay" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TotBookingNum" class="control-label">Total Booking </label>
+                                <input disabled asp-for="TotBookingNum" class="form-control" value="@ViewBag.TotbookedHall"/>
+                                <span asp-validation-for="TotBookingNum" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TotUsersRegisteredNum" class="control-label">Total User</label>
+                                <input disabled asp-for="TotUsersRegisteredNum" class="form-control" value="@ViewBag.TotalUserEnter" />
+                                <span asp-validation-for="TotUsersRegisteredNum" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Revenues" class="control-label"></label>
+                                <input disabled asp-for="Revenues" class="form-control" value="@ViewBag.TotalRevenue"/>
+                                <span asp-validation-for="Revenues" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Expenses" class="control-label"></label>
+                                <input asp-for="Expenses" class="form-control" />
+                                <span asp-validation-for="Expenses" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <select hidden asp-for="BookingId" class ="form-control" asp-items="ViewBag.BookingId"></select>
+                            </div>
+                            <div class="form-group">
+                                <select hidden asp-for="PayId" class ="form-control" asp-items="ViewBag.PayId"></select>
+                            </div>
+                            <div class="form-group">
+                                <select hidden asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                 </div>
+
+                    <div class="text-left m-5">
+                    <a class="btn btn-info btn-icon btn-sm w-auto p-2 text-dark" asp-action="Index">
+                        Back to List
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

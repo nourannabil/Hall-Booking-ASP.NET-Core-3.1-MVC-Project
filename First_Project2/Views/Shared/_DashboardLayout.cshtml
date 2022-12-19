@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="perfect-scrollbar-on">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        Hall Booking
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
+
+    <link rel="canonical" href="https://www.creative-tim.com/product/paper-dashboard-2-pro" />
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="~/DashboardAssests/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/DashboardAssests/css/paper-dashboard.min.css?v=2.1.1" rel="stylesheet" />
+    <link href="~/DashboardAssests/demo/demo.css" rel="stylesheet" />
+    <link href="~/DashboardAssests/css/EditingsDashboard.css" rel="stylesheet" />
+    <style>
+        a.nav-link.dropdown-toggle {
+            display: none;
+        }
+        :root{
+            overflow: visible;
+        }
+    </style>
+</head>
+
+<!--Start Body-->
+<body class="">
+    
+  <div class="wrapper ">
+    <!--Start sidebar-->
+      <div class="sidebar" data-color="default" data-active-color="danger">
+        <div class="all-menu">
+            <div class="logo">
+                <a asp-controller="Home" asp-action="Home" class="simple-text logo-normal text-center">
+                    Hall Booking
+                </a>
+            </div>
+
+            <div class="sidebar-wrapper ps ps--active-x ps--active-y">
+
+                    <partial name="_LinkDashPartialView"/>
+
+            </div>
+        </div>
+        
+<!--End Sidebar-->
+    </div>
+ 
+
+<!--Start main-panel-->
+        <div class="main-panel">
+            <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <div class="navbar-minimize">
+                            <button id="minimizeSidebar" class="btn btn-icon btn-round">
+                                <i class="nc-icon nc-minimal-right text-center visible-on-sidebar-mini"></i>
+                                <i class="nc-icon nc-minimal-left text-center visible-on-sidebar-regular"></i>
+                            </button>
+                        </div>
+                        <div class="navbar-toggle">
+                            <button type="button" class="navbar-toggler">
+                                <span class="navbar-toggler-bar bar1"></span>
+                                <span class="navbar-toggler-bar bar2"></span>
+                                <span class="navbar-toggler-bar bar3"></span>
+                            </button>
+                        </div>
+
+                        <div class="ml-4">
+                            <a asp-action="Home" asp-controller="Home" class="navbar-brand">Home</a>
+                            <a asp-action="CatalogueHome" asp-controller="Home" class="navbar-brand">Category</a>
+                            <a asp-action="Search" asp-controller="Home" class="navbar-brand">Search</a>
+                        </div>
+                    </div>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+                        aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-bar navbar-kebab"></span>
+                        <span class="navbar-toggler-bar navbar-kebab"></span>
+                        <span class="navbar-toggler-bar navbar-kebab"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-around" id="navigation">
+                        <ul class="navbar-nav" style="margin-left:20px;"> 
+                            
+                            <partial name="_LinkHomePartialView"/>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        <!--Here is Your Body-->   
+            <div class="content">
+                <div>
+                    @RenderBody()
+                </div>
+            </div>
+
+        <!--Start Footer-->   
+            <footer class="footer footer-black  footer-white ">
+                <div class="container-fluid">
+                    <div class="row">
+                        <nav class="footer-nav">
+                            <ul>
+                                <li>
+                                    <a class="btn btn-link" asp-action="Home" asp-controller="Home">Home</a>
+                                </li>
+                                   <li>
+                                    <a class="btn btn-link" asp-action="About" asp-controller="Home">About Us</a>
+                                </li>
+                                   <li>
+                                    <a class="btn btn-link" asp-action="ContactUs" asp-controller="Home">Contact Us</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="credits ml-auto">
+                             <span class="copyright">
+                                ©
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script>  All Right Reserved. Hall Booking
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <!--End Footer-->  
+
+    <!--Start Settingbox (fixed-plugin)-->   
+    <div class="fixed-plugin">
+        <div class="dropdown show-dropdown">
+            <a href="#" data-toggle="dropdown">
+                <i class="fa fa-cog fa-2x"> </i>
+            </a>
+            <ul class="dropdown-menu">
+                <li class="header-title"> Sidebar Background</li>
+                <li class="adjustments-line">
+                    <a href="javascript:void(0)" class="switch-trigger background-color">
+                        <div class="badge-colors text-center">
+                            <span class="badge filter badge-default active" data-color="default"></span>
+                            <span class="badge filter badge-light" data-color="white"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+                <li class="header-title"> Sidebar Active Color</li>
+                <li class="adjustments-line text-center">
+                    <a href="javascript:void(0)" class="switch-trigger active-color">
+                        <span class="badge filter badge-primary" data-color="primary"></span>
+                        <span class="badge filter badge-info" data-color="info"></span>
+                        <span class="badge filter badge-success" data-color="success"></span>
+                        <span class="badge filter badge-warning" data-color="warning"></span>
+                        <span class="badge filter badge-danger active" data-color="danger"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--End Settingbox (fixed-plugin)-->   
+
+    <script src="~/DashboardAssests/js/core/jquery.min.js"></script>
+    <script src="~/DashboardAssests/js/core/popper.min.js"></script>
+    <script src="~/DashboardAssests/js/core/bootstrap.min.js"></script>
+
+    <script src="~/DashboardAssests/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2Yno10-YTnLjjn_Vtk0V8cdcY5lC4plU"></script>
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <script src="~/DashboardAssests/js/plugins/chartjs.min.js"></script>
+
+    <script src="~/DashboardAssests/js/plugins/bootstrap-notify.js"></script>
+
+    <script src="~/DashboardAssests/js/paper-dashboard.min.js?v=2.1.1" type="text/javascript"></script>
+    
+    <script src="~/DashboardAssests/js/EditingDashboard.js" ></script>
+
+    <noscript>
+        <img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />
+    </noscript>
+</body>
+
+</html>
+
+  @await RenderSectionAsync("Scripts" , required:false)

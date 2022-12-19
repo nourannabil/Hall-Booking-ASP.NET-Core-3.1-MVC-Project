@@ -1,0 +1,203 @@
+﻿
+@{
+    var home = (IEnumerable<First_Project2.Models.HomePage>)ViewBag.HomePage;
+    var cat = (IEnumerable<First_Project2.Models.CategoryHall>)ViewBag.CatInfo;
+    var about = (IEnumerable<First_Project2.Models.AboutPage>)ViewBag.AboutPage;
+    var testimonial = (IEnumerable<First_Project2.Models.TestimonialPage>)ViewBag.TestimonialPage;
+    var contact = ViewBag.ContactPage;
+    var ClientId = ViewBag.ClientId;
+}
+
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_TemplateLayout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <style>
+        .position-absolute.top-0.start-0.w-100.h-100.d-flex.align-items-center {
+            background: rgb(53 53 53 / 45%);
+        }
+    </style>
+</head>
+
+
+<body>
+<!-- Carousel Start -->
+<div class="container-fluid p-0 pb-5">
+    <div class="owl-carousel header-carousel position-relative">
+        @foreach(var item in home)
+         {
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid" src=@Url.Content("~/Images/" + item.ImagePath ) alt="">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(53, 53, 53, .7);">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-lg-8 text-center">
+                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">@item.Title</h5>
+                            <h1 class="display-3 text-white animated slideInDown mb-4"> @item.Description1 </h1>
+                            <p class="fs-5 fw-medium text-white mb-4 pb-2"> @item.Description2 </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+     </div>
+</div>
+
+<!-- Carousel End -->
+
+
+
+<!--Start About-->
+
+ <!-- About Start -->
+    <div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
+        <div class="container about px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                <div class="col-lg-6 ps-lg-0" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        @foreach(var item in about)
+                        {
+                            <img class="position-absolute img-fluid w-100 h-100" src=@Url.Content("~/Images/" + item.ImagePath ) style="object-fit: cover;" alt="">
+                        }
+                    </div>
+                </div>
+                <div class="col-lg-6 about-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="p-lg-5 pe-lg-0">
+                        @foreach(var item in about)
+                        {
+                            <div class="section-title text-start">
+                                <h1 class="display-5 mb-4">@item.Title</h1>
+                            </div>
+                            <p class="mb-4 pb-2">@item.Description1</p>
+                            <p class="mb-4 pb-2">@item.Description2</p>
+                            <a asp-action="Search" asp-controller="Home"> 
+                                See All Halls 
+                                <i class="fa fa-arrow-right ms-3"></i>
+                            </a>
+                        }
+                        <div class="row g-4 mb-4 pb-2 mt-4">
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.1s">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white" style="width: 60px; height: 60px;">
+                                        <i class="fa fa-users fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h2 class="text-primary mb-1" data-toggle="counter-up">@ViewBag.TotalUserEnter</h2>
+                                        <p class="fw-medium mb-0">Happy Clients</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white" style="width: 60px; height: 60px;">
+                                        <i class="fa fa-check fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h2 class="text-primary mb-1" data-toggle="counter-up">@ViewBag.TotalHall</h2>
+                                        <p class="fw-medium mb-0">We Have A Lot of Halls</p>
+                                        <p class="fw-medium mb-0">You can find what you need</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+<!--End About-->
+
+
+<!--Start Category Catalogue Home-->
+    <div class="container-xxl py-5">
+    <div class="container">
+        <div class="section-title text-center">
+            <h1 class="display-5 mb-5">Event Types</h1>
+            <p> Whatever the event, we’ve got you covered </p>
+        </div>
+        <div class="row g-4 mt-4">
+            @foreach(var item in cat)
+            {
+              @await Html.PartialAsync("_CataloguePartialView",item ,new ViewDataDictionary(ViewData){{"controller", "Home"},{"action","HallMenuHome"},{"route-id" , @item.Id}})
+            }
+        </div>
+    </div>
+  </div>
+
+<!--End Category Catalogue Home-->
+
+
+
+
+<!--Start Testamoinal -->
+
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="section-title text-center">
+                <h1 class="display-5 mb-5">Testimonial</h1>
+            </div>
+            <div class="owl-carousel testimonial-carousel">
+                @foreach(var item in testimonial)
+                {
+                    <div class="testimonial-item text-center">
+                        <img src=@Url.Content("~/Images/" + item.User.ImagePath )
+                        class="img-fluid bg-light p-2 mx-auto mb-3" style="width: 90px; height: 90px;"/>                                                
+                    
+                    <div class="testimonial-text text-center p-4">
+                        <p>@item.Opinion</p>
+                        <h5 class="mb-1">@Html.DisplayFor(modelItem => item.User.Fname) @Html.DisplayFor(modelItem => item.User.Lname)</h5>
+                    </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+<!--End Testamoinal-->
+
+
+
+<!--Start Contact Us -->
+
+  <!-- Contact Start -->
+  <div class="container-fluid bg-light overflow-hidden px-lg-0" style="margin: 6rem 0;">
+    <div class="container contact px-lg-0">
+      <div class="row g-0 mx-lg-0">
+        <div class="col-lg-6 contact-text py-5 wow fadeIn" data-wow-delay="0.5s">
+          <div class="p-lg-5 ps-lg-0">
+         
+            <div class="section-title text-start">
+                <h1 class="display-5 mb-4">Contact Us </h1>
+            </div>
+            <p class="mb-4">We're here to help , Contact The Team with any query or get in touch </p>
+            <p class="mb-4">We can help you find the perfect venue for your next event </p>
+
+           
+            <partial name="_ContactPartialView"></partial>
+           
+          </div>
+        </div>
+        <div class="col-lg-6 pe-lg-0" style="min-height: 400px;">
+          <div class="position-relative h-100">
+            <iframe class="position-absolute w-100 h-100" style="object-fit: cover;" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d433868.0907996726!2d35.66673967094071!3d31.8360352534109!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151b5fb85d7981af%3A0x631c30c0f8dc65e8!2sAmman!5e0!3m2!1sen!2sjo!4v1663548320027!5m2!1sen!2sjo"              
+            frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Contact End -->
+
+<!--End Contact Us-->
+
+</body>
+
+</html>

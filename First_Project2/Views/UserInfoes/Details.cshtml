@@ -1,0 +1,20 @@
+﻿@model First_Project2.Models.UserInfo
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>UserInfo</h4>
+    <hr />
+
+       <partial name="_UserInfoPartialView"></partial>
+
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

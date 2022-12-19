@@ -1,0 +1,123 @@
+﻿@model First_Project2.Models.Request
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    var BookInfo = (IEnumerable<First_Project2.Models.HallBooking>)ViewBag.Booking;
+}
+
+<h4>Request</h4>
+<hr />
+<div class="content">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title ml-3 mt-3"> Request Details</h4>
+                    <div class="container">
+                        <div class="card-body">
+                            <div class="table-responsive display-5">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <dl class="row">
+                                            <dt class="col-sm-2">
+                                                @Html.DisplayNameFor(model => model.Status)
+                                            </dt>
+                                            <dd class="col-sm-10">
+                                                @Html.DisplayFor(model => model.Status)
+                                            </dd>
+                                            <dt class="col-sm-2">
+                                                @Html.DisplayName("Category")
+                                            </dt>
+                                            <dd class="col-sm-10">
+                                                @Html.DisplayFor(model => model.Category.CategoryName)
+                                            </dd>
+                                            <dt class="col-sm-2">
+                                                @Html.DisplayName("Hall Name")
+                                            </dt>
+                                            <dd class="col-sm-10">
+                                                @Html.DisplayFor(model => model.Hall.Name)
+                                            </dd>
+                                            <dt class="col-sm-2">
+                                                @Html.DisplayName("User Name")
+                                            </dt>
+                                            <dd class="col-sm-10">
+                                                @Model.User.Fname @Model.User.Lname
+                                            </dd>
+
+                                            @foreach(var item in BookInfo)
+                                            {
+                                            <dt class="col-sm-2">
+                                                Booking Time
+                                            </dt>
+                                            <dd class="col-sm-10">
+                                                @item.BookingTime
+                                            </dd>
+                                            <dt class="col-sm-2">
+                                                Booking Date
+                                            </dt>
+                                            <dd class="col-sm-10">
+                                                @item.BookingDate
+                                            </dd>
+                                            }
+                                        </dl>
+                                    </div>
+                                    <div class="col-3">
+                                        @if(Model.Status == "Approved")
+                                        {
+                                        <a class="btn btn-danger" onclick="SendEmail()">Send Quick Email</a>
+                                        <a class="btn btn-danger" onclick="SendEmail()" asp-action="Index"
+                                            asp-controller="EmailSetUp">Write Email</a>
+                                        }
+                                        @if(Model.Status == "Rejected")
+                                        {
+                                        <a class="btn btn-danger" onclick="SendRejectEmail()">Send Quick Email</a>
+                                        <a class="btn btn-danger" onclick="SendRejectEmail()" asp-action="Index"
+                                            asp-controller="EmailSetUp">Write Email</a>
+                                        }
+                                    </div>
+                                    <div>
+                                        <div class="text-left m-5">
+                                            <a class="btn btn-info btn-icon btn-sm w-auto p-2 text-dark"
+                                                asp-action="Index">
+                                                Back to List
+                                            </a>
+                                            <a class="btn btn-success btn-icon btn-sm w-auto p-2" asp-action="Edit"
+                                                asp-route-id="@Model.Id">
+                                                <span>Edit</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var SendEmail = function () {
+        $.ajax({
+            type: "Post",
+            url: "/EmailSetUp/SendMailToUser?id=" + @Model.Id ,
+        success: function(data) {
+            alert("Success");
+        }
+    });
+}
+
+    var SendRejectEmail = function () {
+        $.ajax({
+            type: "Post",
+            url: "/EmailSetUp/SendRejectMailToUser?id=" + @Model.Id,
+        success: function(data) {
+            alert("Success");
+        }
+    });
+}
+</script>

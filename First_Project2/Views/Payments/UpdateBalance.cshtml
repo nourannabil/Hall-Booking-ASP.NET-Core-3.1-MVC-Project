@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "UpdateBalance";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    var Hall = (First_Project2.Models.Hall)ViewBag.Hall;
+    var card = (First_Project2.Models.Card)ViewBag.card;
+    var pay = (First_Project2.Models.Payment)ViewBag.pay;
+}
+
+<div class="content">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="card " style="height:75vh;">
+                <div class="card-header">
+                    <h4 class="card-title ml-3 mt-3"> Process Failed </h4>
+                        <div class="container">
+                            <div class="card-body mt-5">
+                            @if(Hall.Price > card.Balance)
+                            {
+                                <h3>Sorry can't complete the process , there is no enough balance in your card</h3>
+                                <h4>Please use another card</h4>
+
+                            }else {
+                                <h3> the process complete</h3>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

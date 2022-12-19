@@ -1,0 +1,75 @@
+﻿@model First_Project2.Models.ContactUsPage
+
+@{
+ViewData["Title"] = "Contact";
+var ClientId = ViewBag.ClientId;
+}
+
+
+<form asp-action="Contact">
+  <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+  <div class="row g-3">
+    <div class="col-md-6">
+      <div class="form-floating">
+        <div class="form-group">
+          <input asp-for="Fname" class="form-control" placeholder="First Name" required />
+          <span asp-validation-for="Fname" class="text-danger"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-floating">
+        <div class="form-group">
+          <div class="form-group">
+            <input asp-for="Lname" class="form-control" placeholder="Last Name" required />
+            <span asp-validation-for="Lname" class="text-danger"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-floating">
+        <div class="form-group">
+          <div class="form-group">
+            <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number" required />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-floating">
+        <div class="form-group">
+          <div class="form-group">
+            <input asp-for="Email" class="form-control" placeholder="Email" required />
+            <span asp-validation-for="Email" class="text-danger"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-floating">
+        <div class="form-group">
+          <div class="form-group">
+            <textarea asp-for="Message" class="form-control" placeholder="Leave a message here" required></textarea>
+            <span asp-validation-for="Message" class="text-danger"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <select hidden asp-for="HomeId" class="form-control" asp-items="ViewBag.HomeId"></select>
+    </div>
+    <div class="form-group">
+      <select hidden asp-for="@ClientId" class="form-control"></select>
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+  </div>
+</form>
+
+<div>
+  <a asp-action="Index">Back to List</a>
+</div>

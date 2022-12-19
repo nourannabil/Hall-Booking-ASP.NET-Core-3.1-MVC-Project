@@ -1,0 +1,64 @@
+﻿@model First_Project2.Models.HomePage
+
+@{
+ViewData["Title"] = "Create";
+Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+<h4>Home Page</h4>
+<hr />
+
+<div class="content ">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title m-5">Home Page Create</h4>
+                </div>
+                <div class=" card-body text-center">
+                    <div class="container">
+                        <form asp-action="Create" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="row">
+                                <div class="col-md-5 text-dark">
+                                    <div class="form-group text-dark">
+                                        <label asp-for="Title" class="control-label text-dark"></label>
+                                        <input asp-for="Title" class="form-control" />
+                                        <span asp-validation-for="Title" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group text-dark">
+                                        <label asp-for="Description1" class="control-label text-dark"></label>
+                                        <input asp-for="Description1" class="form-control" />
+                                        <span asp-validation-for="Description1" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group text-dark">
+                                        <label asp-for="Description2" class="control-label text-dark"></label>
+                                        <input asp-for="Description2" class="form-control" />
+                                        <span asp-validation-for="Description2" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 mt-5 mb-5 text-center">
+                                    <h5 asp-for="ImageFile" class="control-label text-center mb-4 "> upload Image </h5>
+                                    <div class="upload-options">
+                                        <input asp-for="ImageFile" type="file" class="image-upload" accept="image/*" />
+                                        <span asp-validation-for="ImageFile" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mt-5">
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="text-left m-5">
+                    <a class="btn btn-info btn-icon btn-sm w-auto p-2 text-dark" asp-action="Index">
+                        Back to List
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

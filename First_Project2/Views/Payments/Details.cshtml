@@ -1,0 +1,63 @@
+﻿@model First_Project2.Models.Payment
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h1>Details</h1>
+<div class="content">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="card " style="height:75vh;">
+                <div class="card-header">
+                    <h4 class="card-title ml-3 mt-3"> Process Failed </h4>
+                    <div class="container">
+                        <div class="card-body mt-5">
+                            <div>
+                                <h4>Payment</h4>
+                                <hr />
+                                <dl class="row">
+                                    <dt class = "col-sm-2">
+                                        @Html.DisplayNameFor(model => model.PayDate)
+                                    </dt>
+                                    <dd class = "col-sm-10">
+                                        @Html.DisplayFor(model => model.PayDate)
+                                    </dd>
+                                    <dt class = "col-sm-2">
+                                        @Html.DisplayNameFor(model => model.Booking)
+                                    </dt>
+                                    <dd class = "col-sm-10">
+                                        @Html.DisplayFor(model => model.Booking.Id)
+                                    </dd>
+                                    <dt class = "col-sm-2">
+                                        @Html.DisplayNameFor(model => model.Card)
+                                    </dt>
+                                    <dd class = "col-sm-10">
+                                        @Html.DisplayFor(model => model.Card.Cvv)
+                                    </dd>
+                                    <dt class = "col-sm-2">
+                                        @Html.DisplayNameFor(model => model.Hall)
+                                    </dt>
+                                    <dd class = "col-sm-10">
+                                        @Html.DisplayFor(model => model.Hall.Id)
+                                    </dd>
+                                    <dt class = "col-sm-2">
+                                        @Html.DisplayNameFor(model => model.User)
+                                    </dt>
+                                    <dd class = "col-sm-10">
+                                        @Html.DisplayFor(model => model.User.Id)
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div>
+                                <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+                                <a asp-action="Index">Back to List</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

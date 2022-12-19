@@ -1,0 +1,231 @@
+﻿@{
+    ViewData["Title"] = "Charts";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    var Static = ViewBag.Static;
+}
+
+@*------------------------------------------------------------------------------------------*@
+
+<body>
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title ml-3 mt-3"> Charts Type </h4>
+                    <div class="container">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3 text-center">
+                                    <select id="ChartType" class="form-control text-dark" style="width:250px;">
+                                        <option selected>--Select Chart Type--</option>
+                                        <option>bar</option>
+                                        <option>line</option>
+                                        <option>pie</option>
+                                        <option>doughnut</option>
+                                    </select>
+                                </div>
+                                <div class="col-3 text-center">
+                                    <input id="ID" value="Show All Halls & Price" type="button"/>
+                                </div>
+                                <div class="col-3 text-center">
+                                    <input id="HallMax" value="Show The Most Picked Hall" type="button"/>
+                                </div>
+                                <div class="col-3 text-center">
+                                    <input id="ReqNum" value="Show Booking Status" type="button"/>
+                                </div>
+                                <div class="col-3 text-center">
+                                    <input id="printPDF" value="Print" class="btn btn-primary" type="button"/>
+                                </div>
+                            </div>
+                            
+                            <div id="parentDiv">
+                                <div id="ChartView">
+                                    <canvas id="myChart"></canvas>
+                                </div>
+                            </div>
+                               
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="~/lib/jquery/dist/jquery.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+@*------------------------------------------------------------------------------------------*@
+
+<script type="text/javascript">
+
+$(function() {
+    $("#ID").click(function() {
+
+        var chartType = $("#ChartType").val();
+        var chartView = document.getElementById('ChartView')
+        chartView.innerHTML = '&nbsp;';
+        $('#ChartView').append('<canvas id="myChart" style="max-width:750px; max-height:400px;"><canvas>');
+
+        $.ajax({
+            type: "POST",
+            url: "/Dashboard/GetChart",
+            data: "",
+            contextType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: OnSuccessResult,
+            error: OnError
+        });
+
+        function OnSuccessResult(data) {
+
+            var _data = data;
+            var _chartLabels = _data[0];
+            var _chartData = _data[1];
+
+            var barColor = ["red", "green", "blue", "orange" , "#dd62da" , "olive" , "#bdb640" ,"#9ddae4" , "#ff00ad" , "red", "green", "blue", "orange" ,"#dd62da" , "olive" ];
+
+            new Chart("myChart",
+            {
+                type: chartType,
+                data: {
+                    labels: _chartLabels,
+                    datasets: [{
+                        backgroundColor: barColor,
+                        data: _chartData
+                    }]
+                }
+            });
+        }
+
+        function OnError(err) {
+
+        }
+    });
+});
+</script>
+@*------------------------------------------------------------------------------------------*@
+<script type="text/javascript">
+
+$(function() {
+    $("#HallMax").click(function() {
+
+        var chartType = $("#ChartType").val();
+        var chartView = document.getElementById('ChartView')
+        chartView.innerHTML = '&nbsp;';
+        $('#ChartView').append('<canvas id="myChart" style="max-width:750px; max-height:400px;"><canvas>');
+
+        $.ajax({
+            type: "POST",
+            url: "/Dashboard/GetChart2",
+            data: "",
+            contextType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: OnSuccessResult,
+            error: OnError
+        });
+
+        function OnSuccessResult(data) {
+
+            var _data = data;
+            var _chartLabels = _data[0];
+            var _chartData = _data[1];
+
+            var barColor = ["red", "green", "blue", "orange" , "#dd62da" , "olive" , "#bdb640" ,"#9ddae4" , "#ff00ad"];
+
+            new Chart("myChart",
+            {
+                type: chartType,
+                data: {
+                    labels: _chartLabels,
+                    datasets: [{
+                        backgroundColor: barColor,
+                        data: _chartData
+                    }]
+                }
+            });
+        }
+
+        function OnError(err) {
+
+        }
+    });
+});
+</script>
+
+@*------------------------------------------------------------------------------------------*@
+<script type="text/javascript">
+
+$(function() {
+    $("#ReqNum").click(function() {
+
+        var chartType = $("#ChartType").val();
+        var chartView = document.getElementById('ChartView')
+        chartView.innerHTML = '&nbsp;';
+        $('#ChartView').append('<canvas id="myChart" style="max-width:750px; max-height:400px;"><canvas>');
+
+        $.ajax({
+            type: "POST",
+            url: "/Dashboard/GetChart3",
+            data: "",
+            contextType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: OnSuccessResult,
+            error: OnError
+        });
+
+        function OnSuccessResult(data2) {
+
+            var _data = data2;
+            var _chartLabels = _data[0];
+            var _chartData = _data[1];
+
+            var barColor = ["red", "green", "blue", "orange" , "#dd62da" , "olive" , "#bdb640" ,"#9ddae4" , "#ff00ad"];
+
+            new Chart("myChart",
+            {
+                type: chartType,
+                data: {
+                    labels: _chartLabels,
+                    datasets: [{
+                        backgroundColor: barColor,
+                        data: _chartData
+                    }]
+                }
+            });
+        }
+
+        function OnError(err) {
+
+        }
+    });
+});
+</script>
+
+@*------------------------------------------------------------------------------------------*@
+
+<hr />
+<hr />
+@if(Static != null)
+{
+<partial name="_StaticPartialView"></partial>
+
+}
+
+@*------------------------------------------------------------------------------------------*@
+
+
+<script>
+$("#printPDF").click(function() {
+    var element = document.getElementById("parentDiv");
+
+    html2pdf(element, {
+        margin: 10,
+         filename:'HallBooking Charts.pdf',
+        jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+    });
+});
+</script>

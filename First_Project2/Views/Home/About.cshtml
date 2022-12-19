@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewData["Title"] = "About";
+    Layout = "~/Views/Shared/_TemplateLayout.cshtml";
+    var about = (IEnumerable<First_Project2.Models.AboutPage>)ViewBag.AboutPage;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Woody - Carpenter Website Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="~/Assests/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="~/Assests/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/Assests/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/Assests/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/Assests/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="~/Assests/css/style.css" rel="stylesheet">
+
+   <!-- the Editing Css StyleSheet -->
+   <link href="~/Assests/css/Editings.css" rel="stylesheet">
+
+   <style>
+       .page-header {
+            background: linear-gradient(rgba(53, 53, 53, .7), rgba(53, 53, 53, .7)), url(../../Assests/img/MyImages/Slider2.jpg) center center no-repeat;
+            background-size: cover;
+        }
+   </style>
+
+</head>
+<body>
+
+     <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5">
+        <div class="container py-5">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">About Us</h1>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+     <!-- About Start -->
+    <div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
+        <div class="container about px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                <div class="col-lg-6 ps-lg-0" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        @foreach(var item in about)
+                        {
+                            <img class="position-absolute img-fluid w-100 h-100" src=@Url.Content("~/Images/" + item.ImagePath ) style="object-fit: cover;" alt="">
+                        }
+                    </div>
+                </div>
+                <div class="col-lg-6 about-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="p-lg-5 pe-lg-0">
+                        @foreach(var item in about)
+                        {
+                            <div class="section-title text-start">
+                                <h1 class="display-5 mb-4">@item.Title</h1>
+                            </div>
+                            <p class="mb-4 pb-2">@item.Description1</p>
+                            <p class="mb-4 pb-2">@item.Description2</p>
+                            <a asp-action="Search" asp-controller="Home"> 
+                                See All Halls 
+                                <i class="fa fa-arrow-right ms-3"></i>
+                            </a>
+                        }
+                        <div class="row g-4 mb-4 pb-2 mt-4">
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.1s">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white" style="width: 60px; height: 60px;">
+                                        <i class="fa fa-users fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h2 class="text-primary mb-1" data-toggle="counter-up">@ViewBag.TotalUserEnter</h2>
+                                        <p class="fw-medium mb-0">Happy Clients</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white" style="width: 60px; height: 60px;">
+                                        <i class="fa fa-check fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h2 class="text-primary mb-1" data-toggle="counter-up">@ViewBag.TotalHall</h2> 
+                                        <p class="fw-medium mb-0">We Have A Lot of Halls</p>
+                                        <p class="fw-medium mb-0">You can find what you need</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+</body>
+
+</html>
+

@@ -1,0 +1,131 @@
+﻿
+@model IEnumerable<First_Project2.Models.Request>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+ <html>
+
+<body>
+<h4>Request</h4>
+<hr />
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title ml-3 mt-3"> Request List</h4>
+                    <div class="container" >
+                        <div class="row">
+                            <div class="col-lg-12 text-center mb-5 offset-lg-3">
+                                <form id="formSearch" method="post">
+                                  <div class="row" id="SearchBox">
+                                      <div class="col-md-2">User Name</div>
+                                      <div class="col-md-2">
+                                          <input type="text" value="@ViewBag.Name" id="userName" name="userName" placeholder="User Name"/>
+                                      </div>
+                                      <div class="col-md-1 "></div>
+                                  </div>
+                                  <div class="row mt-3" id="SearchBox">
+                                      <div class="col-md-2">Status</div>
+                                      <div class="col-md-2">
+                                          <input type="text" value="@ViewBag.Status" id="Status" name="Status"
+                                          placeholder="Status"/>
+                                      </div>
+                                      <div class="col-md-1 ">
+                                          <input type="submit" id="submitsearch" value="Search" style="background-color: #3569a9;color: white;border-color: #3569a9;"/>
+                                      </div>
+                                  </div>
+                                  </form>
+                            </div>
+                        </div>
+                      </div>
+                        
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            @Html.DisplayNameFor(model => model.Status)
+                                        </th>
+                                        <th class="text-center">
+                                            @Html.DisplayNameFor(model => model.Booking)
+                                        </th>
+                                        <th class="text-center">
+                                            @Html.DisplayNameFor(model => model.Category)
+                                        </th>
+                                        <th class="text-center">
+                                            @Html.DisplayNameFor(model => model.Hall)
+                                        </th>
+                                        <th class="text-center">
+                                            @Html.DisplayNameFor(model => model.User)
+                                        </th>
+                                        <th class="text-center">
+                                            @Html.DisplayNameFor(model => model.Pay)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model) {
+                                    <tr>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(modelItem => item.Status)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(modelItem => item.Booking.Id)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(modelItem => item.Hall.Name)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(modelItem => item.User.Fname) @Html.DisplayFor(modelItem => item.User.Lname)
+                                        </td>
+                                        <td class="text-right">
+                                            @Html.DisplayFor(modelItem => item.Pay.Id)
+                                        </td>
+                                        <td class="text-right">
+                                            <a class="btn btn-info btn-icon btn-sm" asp-action="Details"
+                                                asp-route-id="@item.Id">
+                                                <i class="nc-icon nc-alert-circle-i" style="font-size:17px"></i>
+                                            </a>
+                                            <a class="btn btn-success btn-icon btn-sm" asp-action="Edit"
+                                                asp-route-id="@item.Id">
+                                                <i class="fa fa-edit" style="font-size:15px"></i>
+                                            </a>
+                                            <a id="deleteButton_@item.Id" class="btn btn-danger btn-icon btn-sm" style="color:white"
+                                                onclick="confirmDelete('@item.Id',true)"> 
+                                                <i class="fa fa-times" style="font-size:15px"></i>
+                                            </a>
+                                        </td>
+                                        <form asp-action="Delete">
+                                             <td id="confirmDelete_@item.Id" class="delete-options" style="display:none">
+                                                Are You Sure You Want To Delete ? 
+                                                <button type="submit" value="Delete" class="btn btn-danger btn-sm" 
+                                                asp-action="Delete" asp-route-id="@item.Id"> Yes </button>
+                                                <a class="btn btn-primary btn-sm" style="color:white" 
+                                                    onclick="confirmDelete('@item.Id',false)"> No </a>
+                                            </td>
+                                        </form>
+                                      </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+ <script src="~/js/categoryIndex.js"></script> 
+ 
+ </body>
+</html>

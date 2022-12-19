@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    var ClientUserName = ViewBag.ClientUserName;
+    var ClientId = ViewBag.ClientId;
+}
+
+<head>
+    <style>
+        .text-primary{
+            color:black !important;
+        }
+    </style>
+</head>
+
+<h4>Welcome @ViewBag.ClientFName @ViewBag.ClientLName</h4>
+
+<div class="container-xxl py-5 bg-light text-dark">
+    <div class="container">
+        <div class="section-title text-center">
+            <h3 class="mb-5">
+                See Our Latest Halls
+            </h3>
+        </div>
+        <div class="row g-4 mt-4 bg-light text-dark ">
+            @foreach (var item in Model)
+            {
+                @await Html.PartialAsync("_HallMenuPartialView",item ,new ViewDataDictionary(ViewData){{"controller", "Home"},{"action","HallInformationHome"},{"route-id" , @item.Id}})
+            }
+        </div>
+    </div>
+</div>

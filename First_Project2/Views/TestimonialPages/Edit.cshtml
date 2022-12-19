@@ -1,0 +1,47 @@
+﻿@model First_Project2.Models.TestimonialPage
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>TestimonialPage</h4>
+<hr />
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title m-5">Testimonial Edit , Remove UnApproved Word to show the Opinion</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group">
+                            <label asp-for="Opinion" class="control-label"></label>
+                            <textarea asp-for="Opinion" class="form-control" ></textarea>
+                            <span asp-validation-for="Opinion" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="UserId" class="control-label"></label>
+                            <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                            <span asp-validation-for="UserId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                    </form>
+                    </div>
+                </div>
+          </div>
+    </div>
+</div>
+ 
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,121 @@
+﻿@model IEnumerable<First_Project2.Models.Request>
+
+@{
+    ViewData["Title"] = "MyBooking";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    var BookInfo = (IEnumerable<First_Project2.Models.HallBooking>)ViewBag.Booking;
+    var RoleId = ViewBag.RoleId;
+    var ClientId = ViewBag.ClientId;
+}
+
+<h1>MyBooking</h1>
+<hr />
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title ml-3 mt-3"></h4>
+                    <div class="container">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <table class="table">
+                                            <thead>
+                                                <tr class="p-2">
+                                                    <th>
+                                                        @Html.DisplayName("Booking Time")
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayName("Booking Date")
+                                                    </th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item1 in BookInfo)
+                                                {
+                                                <tr class="p-2">
+                                                    <td class="p-4">
+                                                        @item1.BookingTime
+                                                    </td>
+                                                    <td >
+                                                        @item1.BookingDate
+                                                    </td>
+                                                </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-8">
+                                        <table class="table">
+                                            <thead>
+                                                <tr class="p-2">
+                                                    <th class="text-center">
+                                                        @Html.DisplayNameFor(model => model.Status)
+                                                    </th>
+                                                    <th class="text-center">
+                                                        @Html.DisplayName("Category Name")
+                                                    </th>
+                                                    <th class="text-center">
+                                                        @Html.DisplayName("Hall Name")
+                                                    </th>
+                                                    <th class="text-center">
+                                                        @Html.DisplayName("Price")
+                                                    </th>
+                                                    <th class="text-center">
+                                                        @Html.DisplayName("Pay")
+                                                    </th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach(var item in Model)
+                                                {
+                                                <tr class="p-2">
+                                                    <td class="text-center p-4">
+                                                        @Html.DisplayFor(modelItem => item.Status)
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @Html.DisplayFor(modelItem =>
+                                                        item.Category.CategoryName)
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @Html.DisplayFor(modelItem => item.Hall.Name)
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @Html.DisplayFor(modelItem => item.Hall.Price)$
+                                                    </td>
+                                                    <td style="width:fit-content;" class="text-center">
+                                                        @if(item.PayId != null && item.Status == "Approved")
+                                                        {
+                                                        <button class="btn btn-danger ">Paid</button>
+                                                        <a class="btn btn-primary" asp-controller="Dashboard"
+                                                            asp-action="Bill"
+                                                            asp-route-id="@item.PayId">Bill</a>
+                                                        }
+                                                        @if(item.PayId == null && item.Status == "Approved")
+                                                        {
+                                                        <a class="btn btn-primary" asp-controller="Payments"
+                                                            asp-action="Create"
+                                                            asp-route-id="@item.BookingId">Pay</a>
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        <div>
+                            <a asp-action="Users" class="btn btn-success btn-icon btn-sm w-auto p-2 text-dark">Back to profile</a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

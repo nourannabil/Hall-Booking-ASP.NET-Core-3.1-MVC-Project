@@ -1,0 +1,152 @@
+﻿
+@model First_Project2.Models.Card
+
+@{
+ViewData["Title"] = "Create";
+Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script defer src="~/js/Card.js"></script>
+    <style>
+        #form {
+            width: 350px;
+            padding: 20px;
+            background-color: whitesmoke;
+            border-radius: 15px;
+            font-size: 12px;
+            border: 2px solid #0000ff2e;
+        }
+
+        #form h1 {
+            color: #0f2027;
+            text-align: center;
+        }
+
+        #form button {
+            padding: 10px;
+            width: 100%;
+            color: white;
+            background-color: rgb(41, 57, 194);
+            border: 1px solid rgb(41, 57, 194);
+            border-radius: 4px;
+        }
+
+        .input-control {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-control input {
+            border: 2px solid #f0f0f0;
+            border-radius: 4px;
+            display: block;
+            font-size: 12px;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .input-control input:focus {
+            outline: 0;
+        }
+
+        .input-control.success input {
+            border-color: #09c372;
+        }
+
+        .input-control.error input {
+            border-color: #ff3860;
+        }
+
+        .input-control .error {
+            color: #ff3860;
+            font-size: 9px;
+            height: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <h4>Edit Card</h4>
+    <hr />
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card" style="height: 125vh;">
+                    <div class="card-header">
+                        <h4 class="card-title m-5">Edit Card</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row offset-md-4 offset-sm-2">
+                            <div class="col-md-4">
+                                <form asp-action="Edit" class="form" id="form">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group input-control">
+                                        <h6 asp-for="CardNumber" class="control-label text-dark">Card Number</h6>
+                                        <input asp-for="CardNumber" class="form-control" placeholder="Card Number"
+                                            id="CardNumber" />
+                                        <span asp-validation-for="CardNumber" class="text-danger"></span>
+                                        <div class="error"></div>
+                                    </div>
+                                    <div class="form-group input-control">
+                                        <h6 asp-for="Cvv" class="control-label text-dark">CVV</h6>
+                                        <input asp-for="Cvv" class="form-control" placeholder="CVV" id="Cvv" />
+                                        <span asp-validation-for="Cvv" class="text-danger"></span>
+                                        <div class="error"></div>
+                                    </div>
+                                    <div class="form-group input-control">
+                                        <h6 asp-for="ExpiryDate" class="control-label text-dark">Expiry Date</h6>
+                                        <input asp-for="ExpiryDate" class="form-control" placeholder="Expiry Date"
+                                            id="ExpiryDate" />
+                                        <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+                                        <div class="error"></div>
+                                    </div>
+                                    <div class="form-group input-control">
+                                        <h6 asp-for="NameOnCard" class="control-label text-dark">Name On Card</h6>
+                                        <input asp-for="NameOnCard" class="form-control" placeholder="Name On Card"
+                                            id="NameOnCard" />
+                                        <span asp-validation-for="NameOnCard" class="text-danger"></span>
+                                        <div class="error"></div>
+                                    </div>
+                                    <div class="form-group input-control">
+                                        <h6 asp-for="Balance" class="control-label text-dark">Balance</h6>
+                                        <input asp-for="Balance" class="form-control" placeholder="Balance"
+                                            id="Balance" />
+                                        <span asp-validation-for="Balance" class="text-danger"></span>
+                                        <div class="error"></div>
+                                    </div>
+                                    <div class="form-group input-control">
+                                        <h6 asp-for="CardType" class="control-label text-dark">Card Type</h6>
+                                        <select asp-for="CardType" class="form-control" id="CardType">
+                                            <option>Visa</option>
+                                            <option>MasterCard</option>
+                                        </select>
+                                        <span asp-validation-for="CardType" class="text-danger"></span>
+                                        <div class="error"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <select hidden asp-for="UserId" class="form-control"
+                                            asp-items="ViewBag.UserId"></select>
+                                    </div>
+                                    <div class="form-group form-button text-center">
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+</body>
+
+</html>

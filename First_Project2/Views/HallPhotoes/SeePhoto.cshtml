@@ -1,0 +1,99 @@
+﻿
+@model IEnumerable<First_Project2.Models.HallPhoto>
+
+@{
+   Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SeePhoto</title>
+
+    <style>
+        .box1{
+            position: relative;
+            box-shadow: 0px 1px 5px rgb(0 0 0 / 30%);
+            padding: 22px;
+            display: inline-block;
+            width: 200px;
+            margin: -22px;
+        }
+        .box1 .span {
+            text-align: center;
+            padding-bottom: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    <h4>Photos</h4>
+    <hr />
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title m-5">Photos List</h4>
+                </div>
+                 <div class="text-right mr-5 mb-2">
+                        <a class="btn btn-success btn-icon btn-sm w-auto p-2 text-dark" asp-action="Create">
+                            Create New
+                        </a>
+                 </div>
+                <div class="card-body">
+                    <div class="container text-center">
+                        <div class="row offset-3 ">
+                            <div class="col-5 mt-5 ">
+            
+                            @foreach (var item in Model) {
+  
+                                <span class="box1">
+                                    <span class="span">
+                                    <img src=@Url.Content("~/Images/" + item.ImagePath )
+                                                style="border-radius:20%" width="100" height="100" />
+                                    </span>
+                                </span>
+                
+                                <div class="link position-relative" style="top: -35px; left: 160px;">
+                                    <a class="btn btn-info btn-icon btn-sm" asp-action="Details" asp-route-id="@item.Id">
+                                        <i class="nc-icon nc-alert-circle-i" style="font-size:17px"></i></a>
+
+                                    <a class="btn btn-success btn-icon btn-sm" asp-action="Edit" asp-route-id="@item.Id">
+                                         <i class="fa fa-edit" style="font-size:15px"></i> </a> 
+                                         
+                                    <a id="deleteButton_@item.Id" class="btn btn-danger btn-icon btn-sm" style="color:white"
+                                        onclick="confirmDelete('@item.Id',true)"> 
+                                        <i class="fa fa-times" style="font-size:15px"></i>
+                                    </a>
+                                        
+                                    <form asp-action="Delete">
+                                        <span id="confirmDelete_@item.Id" class="delete-options" style="display:none">
+                                            Are You Sure You Want To Delete ? 
+                                            <button type="submit" value="Delete" class="btn btn-danger btn-sm" 
+                                            asp-action="Delete" asp-route-id="@item.Id"> Yes </button>
+                                            <a class="btn btn-primary btn-sm" style="color:white" 
+                                                onclick="confirmDelete('@item.Id',false)"> No </a>
+                                        </span>
+                                    </form>
+                                     
+                                </div>
+                            }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-left m-5">
+                    <a class="btn btn-info btn-icon btn-sm w-auto p-2 text-light" style="background-color:#4caf50;"  asp-action="Index">
+                        Back to Select
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/categoryIndex.js"></script> 
+</body>
+</html>

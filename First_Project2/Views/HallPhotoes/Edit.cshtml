@@ -1,0 +1,63 @@
+﻿@model First_Project2.Models.HallPhoto
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>HallPhoto</h4>
+<hr />
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title m-5">Edit Hall Photo</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row">
+                        <div class="col-6 offset-4">
+                             <input type="hidden" asp-for="Id"/>
+
+                             <div class="form-group">
+                                <label asp-for="CategoryId" class="control-label font-weight-bold text-dark text-start position-relative" style="top:30px; right: 134px;">Category Name</label>
+                                <select asp-for="CategoryId" class ="form-control border-dark w-75 text-dark" asp-items="ViewBag.CategoryId">
+                                     <option>Please Select Category</option>
+                                </select>          
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="HallId" class="control-label font-weight-bold text-dark text-start position-relative mt-4 ml-5" style="top:30px; right:150px" >Hall Name</label>
+                                <select asp-for="HallId" class ="form-control border-dark w-75 text-dark" asp-items="ViewBag.HallId">
+                                    <option>Please Select Hall</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-5 mt-5 mb-5 text-center">
+                                <h5 asp-for="ImageFile" class="control-label text-center mb-4 "> Add Photo </h5>
+                                    <input asp-for="ImageFile" class="image-upload"  />
+                                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                         <input type="submit" value="Save" class="btn btn-primary position-relative" style="top:20px; left:50%; background-color:#4caf50;"/>
+                    </div>
+                    </form>
+
+                    <div class="text-left m-5">
+                    <a class="btn btn-info btn-icon btn-sm w-auto p-2 text-dark" asp-action="SeeFeature" asp-route-id="@Model.HallId">
+                            Back to List
+                     </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

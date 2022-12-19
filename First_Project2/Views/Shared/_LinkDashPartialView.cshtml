@@ -1,0 +1,298 @@
+﻿@{
+    var RoleId = ViewBag.RoleId;
+
+    var AdminUserName = ViewBag.AdminUserName;
+    var AdminId = ViewBag.AdminId;
+    var AdminImage = ViewBag.UserImage;
+    var AdminFName = ViewBag.AdminFName;
+    var AdminLName = ViewBag.AdminLName;
+    var AdminEmail = ViewBag.AdminEmail;
+
+    var ClientUserName = ViewBag.ClientUserName;
+    var ClientId = ViewBag.ClientId;
+    var ClientImage = ViewBag.UserImage;
+    var ClientFName = ViewBag.ClientFName;
+    var ClientLName = ViewBag.ClientLName;
+    var ClientEmail = ViewBag.ClientEmail;
+}
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    @if (RoleId == 1)
+    {
+    <div class="user">
+        <div class="photo">
+            <img src=@Url.Content("~/Images/" + @AdminImage ) class="image" />
+        </div>
+        <div class="info">
+            <a data-toggle="collapse" href="#collapseExample" class="" aria-expanded="true">
+                <span class="name">
+                    @AdminFName @AdminLName
+                    <b class="caret"></b>
+                </span>
+            </a>
+            <div class="clearfix"></div>
+            <div class="collapse show" id="collapseExample">
+                <ul class="nav">
+                    <li>
+                        <a asp-action="MyProfile" asp-controller="Dashboard" asp-route-id="@AdminId"
+                            class="nav-item nav-link">
+                            <span class="sidebar-normal"> My Profile </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="EditProfile" asp-controller="Dashboard" asp-route-id="@AdminId"
+                            class="nav-item nav-link">
+                            <span class="sidebar-normal"> Edit Profile </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <ul class="nav">
+        <li class="active">
+            <a asp-action="Admin" asp-controller="Dashboard">
+                <i class="nc-icon nc-bank"></i>
+                <p>TimeLine</p>
+            </a>
+        </li>
+        <li>
+            <a data-toggle="collapse" href="#pagesExamples">
+                <i class="nc-icon nc-single-copy-04"></i>
+                <p>
+                    Pages <b class="caret"></b>
+                </p>
+            </a>
+            <div class="collapse " id="pagesExamples">
+                <ul class="nav ml-4">
+                    <li>
+                        <a asp-action="Index" asp-controller="HomePages" class="nav-item nav-link active">
+                            <span class="sidebar-normal"> Home </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="AboutPages" class="nav-item nav-link">
+                            <span class="sidebar-normal"> About </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="TestimonialPages" class="nav-item nav-link">
+                            <span class="sidebar-normal"> Testimonial </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="ContactUsPages" class="nav-item nav-link">
+                            <span class="sidebar-normal"> ContactUs </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <a data-toggle="collapse" href="#componentsExamples">
+                <i class="nc-icon nc-layout-11"></i>
+                <p>
+                    Halls Management <b class="caret"></b>
+                </p>
+            </a>
+            <div class="collapse " id="componentsExamples">
+                <ul class="nav ml-4">
+                    <li>
+                        <a asp-action="Index" asp-controller="CategoryHalls" class="nav-item nav-link">
+                            <span class="sidebar-normal"> Category </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="Halls" class="nav-item nav-link">
+                            <span class="sidebar-normal"> Halls </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="HallPhotoes" class="nav-item nav-link">
+                            <span class="sidebar-normal"> Hall Photoes </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="Features" class="nav-item nav-link">
+                            <span class="sidebar-normal"> Features </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <a data-toggle="collapse" href="#formsExamples">
+                <i class="nc-icon nc-bag-16"></i>
+                <p>
+                    Booking Management <b class="caret"></b>
+                </p>
+            </a>
+            <div class="collapse " id="formsExamples">
+                <ul class="nav ml-4">
+                    <li>
+                        <a asp-action="Index" asp-controller="HallBookings" class="nav-item nav-link">
+                            <span class="sidebar-normal"> Hall Booking </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Search" asp-controller="Requests" class="nav-item nav-link">
+                            <span class="sidebar-normal"> Requests </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="Payments" class="nav-item nav-link">
+                            <span class="sidebar-normal"> Payments </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <a data-toggle="collapse" href="#tablesExamples">
+                <i class="nc-icon nc-circle-10"></i>
+                <p>
+                    Accounts Management <b class="caret"></b>
+                </p>
+            </a>
+            <div class="collapse " id="tablesExamples">
+                <ul class="nav ml-4">
+                    <li>
+                        <a asp-action="Index" asp-controller="UserInfoes" class="nav-item nav-link">
+                            <span class="sidebar-normal"> User Info </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="Logins" class="nav-item nav-link">
+                            <span class="sidebar-normal"> Login Info </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <a data-toggle="collapse" href="#mapsExamples">
+                <i class="nc-icon nc-box"></i>
+                <p>
+                    Reports & Statistics <b class="caret"></b>
+                </p>
+            </a>
+            <div class="collapse" id="mapsExamples">
+                <ul class="nav ml-4">
+                    <li>
+                        <a asp-action="Report" asp-controller="Dashboard"
+                            class="nav-item nav-link">
+                            <span class="sidebar-normal"> Report </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="Statistics" asp-route-id="@ClientId"
+                            class="nav-item nav-link">
+                            <span class="sidebar-normal"> Statistics </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <a asp-action="Chart" asp-controller="Dashboard">
+                <i class="nc-icon nc-chart-bar-32"></i>
+                <p>Charts</p>
+            </a>
+        </li>
+    </ul>
+    }
+else if (RoleId == 2)
+    {
+    <div class="user">
+        <div class="photo">
+            <img src=@Url.Content("~/Images/" + @ClientImage ) class="image" />
+        </div>
+        <div class="info">
+            <a data-toggle="collapse" href="#collapseExample" class="" aria-expanded="true">
+                <span class="name">
+                    @ClientFName @ClientLName
+                    <b class="caret"></b>
+                </span>
+            </a>
+            <div class="clearfix"></div>
+            <div class="collapse show" id="collapseExample">
+                <ul class="nav">
+                    <li>
+                        <a asp-action="MyProfile" asp-controller="Dashboard" asp-route-id="@ClientId"
+                            class="nav-item nav-link">
+                            <span class="sidebar-normal"> My Profile </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="EditProfile" asp-controller="Dashboard" asp-route-id="@ClientId"
+                            class="nav-item nav-link">
+                            <span class="sidebar-normal"> Edit Profile </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <ul class="nav">
+        <li class="active">
+            <a asp-action="Users" asp-controller="Dashboard">
+                <i class="nc-icon nc-bank"></i>
+                <p>TimeLine</p>
+            </a>
+        </li>
+        <li>
+            <a data-toggle="collapse" href="#tablesExamples">
+                <i class="nc-icon nc-credit-card"></i>
+                <p>
+                    My Cards <b class="caret"></b>
+                </p>
+            </a>
+            <div class="collapse " id="tablesExamples">
+                <ul class="nav ml-4">
+                    <li>
+                        <a asp-action="Create" asp-controller="Cards" class="nav-item nav-link">
+                            <span class="sidebar-normal"> Add Card </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="Cards" asp-route-id="@ClientId" class="nav-item nav-link">
+                            <span class="sidebar-normal"> My Cards </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <a data-toggle="collapse" href="#mapsExamples">
+                <i class="nc-icon nc-single-02"></i>
+                <p>
+                    My Booking <b class="caret"></b>
+                </p>
+            </a>
+            <div class="collapse" id="mapsExamples">
+                <ul class="nav ml-4">
+                    <li>
+                        <a asp-action="MyBooking" asp-controller="Dashboard" asp-route-id="@ClientId"
+                            class="nav-item nav-link">
+                            <span class="sidebar-mini-icon"></span>
+                            <span class="sidebar-normal"> My Booking </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <a asp-action="Create" asp-Controller="TestimonialPages">
+                <i class="nc-icon nc-paper"></i>
+                <p>Give FeedBack</p>
+            </a>
+        </li>
+        </ul>
+    } 
+ 
+}
+

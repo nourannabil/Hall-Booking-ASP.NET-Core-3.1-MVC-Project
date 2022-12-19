@@ -1,0 +1,75 @@
+﻿@model First_Project2.Models.Request
+
+@{
+ViewData["Title"] = "Edit";
+Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h4>Request</h4>
+<hr />
+<div class="content">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title ml-3 mt-3"> Edit Request</h4>
+                    <div class="container">
+                        <div class="card-body">
+                            <div class="table-responsive text-center display-5">
+                                <div class="row ">
+                                    <div class="col-md-4 offset-4">
+                                        <form asp-action="Edit">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <input type="hidden" asp-for="Id" />
+                                            <div class="form-group ">
+                                                <label asp-for="Status" class="control-label text-dark"></label>
+                                                <Select asp-for="Status" class="form-control">
+                                                    <option> Pending </option>
+                                                    <option> Approved </option>
+                                                    <option> Rejected </option>
+                                                </Select>
+                                                <span asp-validation-for="Status" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="CategoryId" class="control-label text-dark">Category
+                                                    Id</label>
+                                                <select asp-for="CategoryId" class="form-control"
+                                                    asp-items="ViewBag.CategoryId"></select>
+                                                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="HallId" class="control-label text-dark">Hall Id</label>
+                                                <select asp-for="HallId" class="form-control"
+                                                    asp-items="ViewBag.HallId"></select>
+                                                <span asp-validation-for="HallId" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="BookingId" class="control-label text-dark">Booking
+                                                    Id</label>
+                                                <select asp-for="BookingId" class="form-control"
+                                                    asp-items="ViewBag.BookingId"></select>
+                                                <span asp-validation-for="BookingId" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="UserId" class="control-label text-dark"> User Id</label>
+                                                <select asp-for="UserId" class="form-control"
+                                                    asp-items="ViewBag.UserId"></select>
+                                                <span asp-validation-for="UserId" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" value="Save" class="btn btn-primary" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

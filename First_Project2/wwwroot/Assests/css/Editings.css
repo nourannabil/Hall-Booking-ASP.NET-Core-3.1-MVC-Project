@@ -1,0 +1,37 @@
+﻿body{
+    overflow-x:hidden;
+}
+
+/* Start nav bar Editing*/
+.navbar-light .navbar-nav .nav-link {
+    text-transform: none;
+}
+
+
+.navbar .dropdown-toggle::after {
+    content: "" !important;
+
+}
+
+@media (min-width: 992px) {
+    .navbar .nav-item:hover .dropdown-menu {
+        left: -100px;
+    }
+}
+
+.dropdown-menu a.nav-item.nav-link {
+    padding: 10px;
+}
+
+
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: absolute;
+    left: 80% !important;
+}
+
+a.nav-item.nav-link {
+    text-transform: capitalize;
+}
+
+
+/* End nav bar Editing*/

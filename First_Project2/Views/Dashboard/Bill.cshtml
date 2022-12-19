@@ -1,0 +1,71 @@
+﻿@model First_Project2.Models.Payment
+
+@{
+ViewData["Title"] = "Bill";
+Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="content">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="card vh-100">
+                <div class="card-header">
+                    <h4 class="card-title ml-3 mt-3">My Bill</h4>
+                    <div class="container">
+                        <div class="card-body">
+                            <dl class="row mt-3">
+                                <dt class="col-sm-2">
+                                    @Html.DisplayName("Transaction ID")
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Id)*****123456
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayName("Pay Date & Time")
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.PayDate)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayName("Hall Name")
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Hall.Name)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayName("Card Number")
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Card.CardNumber)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayName("Card Balance")
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Card.Balance) $
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayName("User Name")
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.User.Fname) @Html.DisplayFor(model =>
+                                    model.User.Lname)
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="mt-5">
+                            <div>
+                                <a asp-action="Users" class="btn btn-info btn-icon btn-sm w-auto p-2 text-dark">Back to
+                                    profile</a>
+                            </div>
+                            <div style="position: relative; top: -52px; left: 50%;">
+                                <a asp-action="Create" asp-Controller="TestimonialPages"
+                                    class="btn btn-success">Give A FeedBack</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

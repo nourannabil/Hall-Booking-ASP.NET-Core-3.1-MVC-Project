@@ -1,0 +1,62 @@
+﻿@model First_Project2.Models.Feature
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h4>Feature</h4>
+<hr />
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title m-5">Edit Feature</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-6 offset-4">
+                             <input type="hidden" asp-for="Id"/>
+
+                             <div class="form-group">
+                                <label asp-for="CategoryId" class="control-label font-weight-bold text-dark text-start position-relative" style="top:30px; right: 134px;">Category Name</label>
+                                <select asp-for="CategoryId" class ="form-control border-dark w-75 text-dark" asp-items="ViewBag.CategoryId">
+                                     <option>Please Select Category</option>
+                                </select>          
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="HallId" class="control-label font-weight-bold text-dark text-start position-relative mt-4 ml-5" style="top:30px; right:150px" >Hall Name</label>
+                                <select asp-for="HallId" class ="form-control border-dark w-75 text-dark" asp-items="ViewBag.HallId">
+                                    <option>Please Select Hall</option>
+                                </select>
+                            </div>
+   
+                           <div class="form-group">
+                                <label asp-for="Feat" class="control-label font-weight-bold text-dark text-start position-relative mt-4 ml-5" style="top:30px; right:136px;">Feature</label>
+                                <input asp-for="Feat" class="form-control text-left border-dark w-75 text-dark" placeholder=" Add Feature " />
+                                <span asp-validation-for="Feat" class="text-danger"></span>
+                           </div>
+                           <input type="hidden" asp-for="PhotoId" />
+                         </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary position-relative" style="top:20px; left:50%; background-color:#4caf50;"/>
+                    </div>
+                </form>
+
+                    <div class="text-left m-5">
+                    <a class="btn btn-info btn-icon btn-sm w-auto p-2 text-dark" asp-action="SeeFeature" asp-route-id="@Model.HallId">
+                            Back to List
+                     </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

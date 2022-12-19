@@ -1,0 +1,114 @@
+﻿@model First_Project2.Models.Payment
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    var BookInfo = (First_Project2.Models.HallBooking)ViewBag.BookingInfo;
+    var UserInfo = (IEnumerable<First_Project2.Models.UserInfo>)ViewBag.userInfo;
+    var catInfo = (IEnumerable<First_Project2.Models.CategoryHall>)ViewBag.CatInfo;
+    var hallInfo = (IEnumerable<First_Project2.Models.Hall>)ViewBag.HInfo;
+    var card = (IEnumerable<First_Project2.Models.Card>)ViewBag.card;
+}
+
+<div class="content">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="card " style="height:75vh;">
+                <div class="card-header">
+                    <h4 class="card-title ml-3 mt-3"> Your Booking Information </h4>
+                    <div class="container">
+                        <div class="card-body mt-5">
+                            <div class="table-responsive display-5">
+                                <form asp-action="Create">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                    <div class="row">
+                                        <div class="col-7">
+
+                                            <div class="form-group">
+                                                @foreach(var item in catInfo )
+                                                {
+                                                <h5 class="font-weight-bold"> Category Name : <span>
+                                                        @item.CategoryName </span> </h5>
+                                                }
+                                            </div>
+
+                                            <div class="form-group">
+                                                @foreach(var item in hallInfo )
+                                                {
+                                                <h5 class="font-weight-bold"> Hall Name : <span> @item.Name
+                                                    </span> </h5>
+
+                                                <h5 class="font-weight-bold"> Price : <span> @item.Price
+                                                        <span>$</span> </span> </h5>
+                                                }
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h5 class="font-weight-bold"> Booking Time : <span>
+                                                        @BookInfo.BookingTime </span> </h5>
+
+                                                <h5 class="font-weight-bold"> Booking Date : <span>
+                                                        @BookInfo.BookingDate </span> </h5>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <h5 asp-for="CardId" class="control-label text-dark font-weight-bold"> Select Your Card</h5>
+                                                    <select asp-for="CardId" class="form-control"  >
+                                                        @foreach(var item in card )
+                                                        {   
+                                                            <option value="@item.CardNumber"> @item.CardNumber</option>
+                                                        }
+                                                    </select>
+                                            </div>
+                                            <div>
+                                                <span class="form-group" style="">
+                                                    <a class="btn btn-danger" asp-controller="Cards"
+                                                        asp-action="Create"> Add Card </a>
+                                                </span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <select hidden asp-for="HallId" class="form-control"
+                                                    asp-items="ViewBag.HallId">
+                                                    <option> @BookInfo.HallId</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <select hidden asp-for="BookingId" class="form-control"
+                                                    asp-items="ViewBag.BookingId">
+                                                    <option> @BookInfo.Id</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <select hidden asp-for="UserId" class="form-control"
+                                                    asp-items="ViewBag.UserId">
+                                                    @foreach(var item in UserInfo )
+                                                    {
+                                                    <option> @item.Id</option>
+                                                    }
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="submit" value="Confirm Payment"
+                                                    class="btn btn-primary"  />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="mt-5">
+                                <a asp-controller="Dashboard" asp-action="MyBooking" asp-route-id="@BookInfo.UserId" class="btn btn-info btn-icon btn-sm w-auto p-2 text-dark">
+                                    Back to My Booking</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

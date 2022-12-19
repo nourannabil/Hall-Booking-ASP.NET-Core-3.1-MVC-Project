@@ -1,0 +1,37 @@
+﻿@model First_Project2.Models.UserInfo
+
+@{
+    ViewData["Title"] = "MyProfile";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    var RoleId = ViewBag.RoleId;
+    var AdminId = ViewBag.AdminId;
+    var ClientId = ViewBag.ClientId;
+    var log = ViewBag.log;
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    if (Model.Id == AdminId)
+    {
+
+        <h1>My Profile</h1>
+           <hr />
+        <partial name="_UserInfoPartialView"></partial>
+
+        <div>
+            <a asp-action="EditProfile" asp-route-id="@AdminId">Edit</a> 
+        </div>
+    }else
+    {
+        <h1>My Profile</h1>
+           <hr />
+        <partial name="_UserInfoPartialView"></partial>
+
+        <div>
+            <a asp-action="EditProfile" asp-route-id="@ClientId">Edit</a> 
+        </div> 
+    }
+}
+
+
+

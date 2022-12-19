@@ -1,0 +1,45 @@
+﻿
+@{
+    var AdminName = ViewBag.EmployeeName;
+    var ClientName = ViewBag.ClientName;
+    var AdminId = ViewBag.EmployeeId;
+    var ClientId = ViewBag.ClientId;
+    var RoleId = ViewBag.RoleId;
+}
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    if (RoleId == 1)
+    {
+        <a asp-action="Logout" asp-controller="LoginAndRegistration" class="nav-item nav-link">Logout</a>
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+            <i class="bi bi-gear-fill"></i>
+        </a>
+        <div class="dropdown-menu fade-up m-0">
+            <a asp-action="Admin" asp-controller="Dashboard" class="nav-item nav-link" >
+                <i class="bi bi-person-circle mr-2 "></i> My Profile
+            </a>
+        </div>
+    }else
+    {
+        <a asp-action="Logout" asp-controller="LoginAndRegistration" class="nav-item nav-link">Logout</a>
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+            <i class="bi bi-gear-fill"></i>
+        </a>
+        <div class="dropdown-menu fade-up m-0">
+            <a asp-action="Users" asp-controller="Dashboard" class="nav-item nav-link" >
+                <i class="bi bi-person-circle mr-2 "></i> My Profile
+            </a>
+            <a asp-action="MyBooking" asp-controller="Dashboard" asp-route-id="@ViewBag.ClientId" class="nav-item nav-link" >
+                <i class="bi bi-card-checklist mr-2"></i>
+                My Booking
+            </a>
+        </div>
+    }
+
+}else {
+    <a asp-action="LoginIn" asp-controller="LoginAndRegistration" class="nav-item nav-link">Login</a>
+    <a asp-action="Register" asp-controller="LoginAndRegistration" class="nav-item nav-link">Register</a>
+}
+

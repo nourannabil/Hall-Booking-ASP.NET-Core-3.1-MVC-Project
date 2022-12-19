@@ -1,0 +1,44 @@
+﻿@model First_Project2.Models.TestimonialPage
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    var user = ViewBag.user;
+}
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title m-5">Share with us your experience</h4>
+                </div>
+                    <div class="card-body">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group ml-5 border-2">
+                            <textarea asp-for="Opinion" class="form-control" style="width:600px"></textarea>
+                            <span asp-validation-for="Opinion" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <select hidden asp-for="HomeId" class ="form-control" asp-items="ViewBag.HomeId"></select>
+                        </div>
+                        <div class="form-group">
+                            <input hidden asp-for="UserId" value="@ViewBag.ClientId" class ="form-control" />
+                        </div>
+                        <div class="form-group text-center">
+                            <input type="submit" value="Done" class="btn btn-primary" />
+                        </div>
+                    </form>
+                    <div>
+                        <a class="btn btn-success btn-icon btn-sm w-auto p-2 text-dark" asp-action="User" asp-controller="Dashboard">Back to Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

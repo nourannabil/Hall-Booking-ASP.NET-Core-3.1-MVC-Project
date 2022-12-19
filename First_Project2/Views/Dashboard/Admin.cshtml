@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewData["Title"] = "Admin";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    var AdminUserName = ViewBag.AdminUserName;
+    var AdminId = ViewBag.AdminId;
+    var AdminImage = ViewBag.UserImage;
+    var Static = ViewBag.Static;
+}
+
+@if(Static != null)
+{
+    <partial name="_StaticPartialView"></partial>
+}
+
+
+
+
+

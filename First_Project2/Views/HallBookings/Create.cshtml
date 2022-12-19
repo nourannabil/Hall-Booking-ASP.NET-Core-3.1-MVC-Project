@@ -1,0 +1,224 @@
+﻿@model First_Project2.Models.HallBooking
+
+@{
+    ViewData["Title"] = "BookingNow";
+    var hallInfo = (IEnumerable<First_Project2.Models.Hall>)ViewBag.HInfo;
+    var catInfo = (IEnumerable<First_Project2.Models.CategoryHall>)ViewBag.CatInfo;
+    var ClientUserName = ViewBag.ClientUserName;
+    var ClientId = ViewBag.ClientId;
+
+    var Booking = (IEnumerable<First_Project2.Models.HallBooking>)ViewBag.Booking;
+
+    Layout = "~/Views/Shared/_TemplateLayout.cshtml";
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <title>Booking Information</title>
+    <!-- Favicon -->
+    <link href="~/Assests/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="~/Assests/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/Assests/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/Assests/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/Assests/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="~/Assests/css/style.css" rel="stylesheet">
+
+   <!-- the Editing Css StyleSheet -->
+   <link href="~/Assests/css/Editings.css" rel="stylesheet">
+
+   <!--Jquery Ui Css -->
+<link href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet"/>
+ 
+<link rel="stylesheet" href="~/css/Popup.css">
+
+ <style>
+       .page-header {
+            background: linear-gradient(rgba(53, 53, 53, .7), rgba(53, 53, 53, .7)), url(../../Assests/img/MyImages/Slider2.jpg) center center no-repeat;
+            background-size: cover;
+        }
+   </style>
+
+</head>
+
+<body>
+ <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5">
+        <div class="container py-5">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">Booking Information</h1>
+        </div>
+    </div>
+    <!-- Page Header End -->
+    <div class="container">
+<div class="row" style="height: 95vh; ">
+    <div class="col-md-6">
+        <form asp-action="Create" style="margin:100px;" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input hidden asp-for="Id"/>
+        
+            <div class="form-group">
+                @foreach(var item in catInfo )
+                {
+                    <h4 class="text-black-50"> Category Name : <span class="text-dark"> @item.CategoryName </span> </h4>
+                    
+                }
+            </div>
+
+            <div class="form-group" >
+                @foreach(var item in hallInfo )
+                {
+                    <h4 class="text-black-50" style="margin-bottom: 30px;"> Hall Name : <span class="text-dark"> @item.Name </span> </h4>
+
+                    <h4 class="text-black-50" style="margin-bottom: 30px;"> Price : <span class="text-dark"> @item.Price <span>$</span> </span> </h4>
+                }
+            </div>
+
+            <div class="form-group">
+                <label class="control-label text-black-50 h4" asp-for="BookingTime" style="margin-bottom: 15px;">  Booking Time :</label>
+                <span>
+                    <select asp-for="BookingTime" class="form-control" id="BookingTime" required style="width:250px" >
+                    @foreach(var item in hallInfo )
+                    {   
+                        @if(item.Interval1 != null ){
+                            <option> @item.Interval1</option>
+                        }else {
+                            continue;
+                        }
+                        @if(item.Interval2 != null ){
+                            <option> @item.Interval2</option>
+                        }else {
+                            continue;
+                        }
+                        @if(item.Interval3 != null ){
+                            <option> @item.Interval3</option>
+                        }else {
+                            continue;
+                        }
+                        @if( item.Interval4 != null ){
+                            <option> @item.Interval4</option>
+                        }else {
+                            continue;
+                        }
+                    }
+                    </select>
+                </span>
+                <span asp-validation-for="BookingTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" style="width:fit-content">
+                <label asp-for="BookingDate" class="control-label text-black-50 h4" style="margin-bottom: 20px; margin-top: 20px;"> Booking Date : </label>
+                <input type="text" asp-for="BookingDate" class="form-control mydatepicker" required autocomplete="off" placeholder="Select Date" margin-bottom: 50px; />
+                <span asp-validation-for="BookingDate" class="text-danger"></span>
+
+                <div class="error-msg text-center ">
+                    <p style="color:red; ">
+                        <span>@ViewData["message"] </span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <select hidden asp-for="CategoryId" class ="form-control">
+                     @foreach(var item in catInfo )
+                        {
+                            <option> @item.Id</option>
+                        }
+                </select>
+            </div>
+            <div class="form-group">
+                <select hidden asp-for="HallId" class ="form-control" >
+                    @foreach(var item in hallInfo )
+                        {
+                            <option> @item.Id</option>
+                        }
+                </select>
+            </div>
+            <div class="form-group">
+                <select hidden asp-for="UserId" class ="form-control">
+                    <option>
+                        @ClientId
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" id="confirm" value="Confirm" class="btn btn-primary" style="margin-left: 60px; margin-top: 20px;" />
+            </div>
+        </form>
+    </div>
+ </div>
+</div>    
+@foreach(var item in hallInfo )
+ {                         
+    <div style="float: left;
+    transform: translate( 10px);
+    font-size: 20px;
+    background-color: #7aa76d;
+    padding: 5px;">
+        <a class="text-light" asp-controller="Home" asp-action="HallInformationHome" asp-route-id="@item.Id">Back to Hall</a>
+    </div>
+}
+
+
+</body>
+</html>
+
+@section Scripts {
+
+<script src="~/lib/jquery/dist/jquery.js" ></script>
+<script src="~/lib/jquery/dist/jquery.min.js" ></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+
+<script type="text/javascript" >
+$(document).ready(function() {
+
+    $(".mydatepicker")  
+        .wrap('<div class="input-group">')
+        .datepicker({
+           dateTimeFormat:"dddd, MMMM dd, yyyy hh:mm:ss tt",
+            timeDisplayFormat:"hh:mm:ss tt",
+            changeYear: true,
+            changeMonth: true,
+            yearRange: "-0:+10",
+            showOn: "both",
+            minDate: new Date()
+        })
+        .next("button").button({
+            icons: { primary: "ui-icon ui-icon-calendar" },
+            label: "Select Date",
+            text: false
+        })
+        .addClass("btn btn-default")
+        .wrap('<span class="input-group-btn">')
+        .find('.ui-button-text')
+        .css({
+            'visibility': 'hidden',
+            'display': 'inline'
+        });
+});
+   
+</script>
+}

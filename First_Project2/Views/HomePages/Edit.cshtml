@@ -1,0 +1,132 @@
+﻿
+@model First_Project2.Models.HomePage
+
+@{
+ViewData["Title"] = "Edit";
+Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+<link href="~/css/categorycreate.css" rel="stylesheet">
+
+<h4>Home Page</h4>
+<hr />
+
+<div class="content ">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title m-5">Home Page Edit</h4>
+                </div>
+                <div class=" card-body text-center">
+                    <div class="container">
+                        <form asp-action="Edit" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <input type="hidden" asp-for="Id" />
+                                    <div class="form-group">
+                                        <label asp-for="Title" class="control-label"></label>
+                                        <input asp-for="Title" class="form-control" />
+                                        <span asp-validation-for="Title" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Description1" class="control-label"></label>
+                                        <input asp-for="Description1" class="form-control" />
+                                        <span asp-validation-for="Description1" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Description2" class="control-label"></label>
+                                        <input asp-for="Description2" class="form-control" />
+                                        <span asp-validation-for="Description2" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group pt-5 text-left">
+                                        <label asp-for="ImagePath" class="control-label">Current Image</label>
+                                        <br />
+                                        <img src=@Url.Content("~/Images/" + @Model.ImagePath ) style="border-radius:20%"
+                                            width="100" height="100" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 offset-1">
+                                    <!-- Upload Area -->
+                                    <div class="form-group">
+                                        <div id="uploadArea" class="upload-area">
+                                            <!-- Header -->
+                                            <div class="upload-area__header">
+                                                <!-- <h1 class="upload-area__title">Upload your image</h1> -->
+                                                <label asp-for="ImageFile" class="control-label upload-area__title">
+                                                    Update Image</label>
+                                                <p class="upload-area__paragraph">
+                                                    File should be an image
+                                                    <strong class="upload-area__tooltip">
+                                                        Like
+                                                        <span class="upload-area__tooltip-data"></span>
+                                                        <!-- Data Will be Comes From Js -->
+                                                    </strong>
+                                                </p>
+                                            </div>
+                                            <!-- End Header -->
+
+                                            <!-- Drop Zoon -->
+                                            <div id="dropZoon" class="upload-area__drop-zoon drop-zoon">
+                                                <span class="drop-zoon__icon">
+                                                    <i class='bx bxs-file-image'></i>
+                                                </span>
+                                                <p class="drop-zoon__paragraph">Drop your file here or Click to browse
+                                                </p>
+                                                <span id="loadingText" class="drop-zoon__loading-text">Please
+                                                    Wait</span>
+
+                                                <input type="file" asp-for="ImageFile"
+                                                    class="form-control drop-zoon__file-input" id="fileInput"
+                                                    accept="image/*">
+                                                <span asp-validation-for="ImageFile" class="text-danger"></span>
+
+                                                <img src="" alt="Preview Image" id="previewImage"
+                                                    class="drop-zoon__preview-image" draggable="false">
+                                            </div>
+                                            <!-- End Drop Zoon -->
+
+                                            <!-- File Details -->
+                                            <div id="fileDetails" class="upload-area__file-details file-details">
+                                                <h3 class="file-details__title">Uploaded File</h3>
+
+                                                <div id="uploadedFile" class="uploaded-file">
+                                                    <div class="uploaded-file__icon-container">
+                                                        <i class='bx bxs-file-blank uploaded-file__icon'></i>
+                                                        <span class="uploaded-file__icon-text"></span>
+                                                        <!-- Data Will be Comes From Js -->
+                                                    </div>
+
+                                                    <div id="uploadedFileInfo" class="uploaded-file__info">
+                                                        <span class="uploaded-file__name">Proejct 1</span>
+                                                        <span class="uploaded-file__counter">0%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End File Details -->
+                                        </div>
+                                        <!-- End Upload Area -->
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="text-left m-5">
+                    <a class="btn btn-info btn-icon btn-sm w-auto p-2 text-dark" asp-action="Index">
+                        Back to List
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/categorycreate.js"></script>

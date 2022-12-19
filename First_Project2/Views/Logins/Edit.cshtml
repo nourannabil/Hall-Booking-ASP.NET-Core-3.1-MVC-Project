@@ -1,0 +1,58 @@
+﻿@model First_Project2.Models.Login
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h4>Login</h4>
+<hr />
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title m-5">Login Edit</h4>
+                </div>
+                 <div class=" card-body text-center">
+                            <div class="container w-50 offset-3">
+                            <form asp-action="Edit">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" asp-for="Id" />
+                                <div class="form-group">
+                                    <label asp-for="UserName" class="control-label"></label>
+                                    <input asp-for="UserName" class="form-control" />
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Password" class="control-label"></label>
+                                    <input asp-for="Password" class="form-control" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="RoleId" class="control-label"></label>
+                                    <input asp-for="RoleId" class="form-control"/>
+                                    <span asp-validation-for="RoleId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="UserId" class="control-label"></label>
+                                    <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                                    <span asp-validation-for="UserId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Save" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        </div>
+                  </div>
+                </div>
+            </div>
+        <div class="text-left m-5">
+            <a class="btn btn-info btn-icon btn-sm w-auto p-2 text-dark" asp-action="Index">
+                Back to List
+            </a>
+        </div>
+    </div>
+</div>
+
+

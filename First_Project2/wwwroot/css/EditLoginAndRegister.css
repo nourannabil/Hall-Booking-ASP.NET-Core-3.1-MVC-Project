@@ -1,0 +1,125 @@
+﻿::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    background-color: rgb(244 243 239);
+}
+
+.main-panel > .content {
+    min-height: calc(100vh - 170px);
+}
+
+.sidebar .sidebar-wrapper {
+    overflow-x: hidden;
+}
+
+body.sidebar-mini .sidebar, body.sidebar-mini .sidebar .sidebar-wrapper {
+    width: 120px;
+}
+
+    body.sidebar-mini .sidebar .nav p {
+        display: none;
+    }
+
+body.sidebar-mini li {
+    padding-bottom: 23px;
+}
+
+.sidebar .nav .caret {
+    top: 14px;
+    right: 0px;
+}
+
+
+.navbar.navbar-transparent a:not(.dropdown-item):not(.btn) {
+    color: white;
+}
+
+.navbar.navbar-transparent a:not(.dropdown-item):not(.btn):hover {
+    color: #51cbce;
+}
+
+.fixed-plugin {
+    top: 180px;
+}
+
+a.nav-link.dropdown-toggle.nn {
+    display: block;
+}
+
+div#navigation {
+    font-size: 28px;
+    color: black;
+}
+
+.navbar.navbar-transparent a:not(.dropdown-item):not(.btn) {
+    text-transform: capitalize;
+    margin-left: 20px;
+}
+
+.full-page.register-page .content > .container {
+    margin-top: 60px;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 3px;
+    position: absolute;
+    height: calc(150vh);
+}
+
+@media screen and (max-width: 991px) 
+{
+    .footer .copyright {
+        color: white;
+        position: relative;
+    }
+    a.nav-link {
+        position: relative;
+        margin-right: 0px;
+        left: 80%;
+    }
+
+}
+
+
+@media screen and (min-width: 992px) 
+{
+    .footer .copyright {
+        color: white;
+        position: relative;
+        float: none;
+        padding-right: 0px;
+        margin-left: 43%;
+        margin-right: 43%;
+    }
+}
+
+
+@media (min-width:577px) and (max-width:991px) {
+    .footer .copyright {
+        margin-left: 37%;
+        margin-right: 37%;
+    }
+}
+
+@media screen and (max-width: 576px) 
+{
+    .footer .copyright {
+        margin-left: 30%;
+        margin-right: 30%;
+    }
+    a.nav-link {
+        position: relative;
+        margin-right: 0px;
+        left: 50%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .smalle {
+        max-width: 100% !important;
+        margin-left: 0px !important;
+    }
+}

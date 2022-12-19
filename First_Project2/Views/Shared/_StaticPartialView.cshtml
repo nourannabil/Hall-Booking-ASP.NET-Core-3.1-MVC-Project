@@ -1,0 +1,116 @@
+﻿@model IEnumerable<First_Project2.Models.Statistic>
+@{
+    ViewData["Title"] = "Index";
+   
+}
+
+
+<div class="row offset-2">
+    <div class="col-lg-4 col-sm-6">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="numbers pull-left">
+                    <i class="nc-icon nc-money-coins text-success font-weight-bolder" style="font-size: 50px;"></i>         
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <h6 class="big-title text-capitalize">total earnings in last ten quarters</h6>
+                <h3 class="text-center mt-4">@ViewBag.TotalRevenue $</h3>
+        </div>
+        <div class="card-footer">
+            <hr>
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="footer-title">Financial Statistics</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+    <div class="col-lg-4 col-sm-6">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="numbers pull-left">
+                    <i class="nc-icon nc-chart-bar-32 text-danger font-weight-bolder" style="font-size: 50px;"></i>         
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <h6 class="big-title text-capitalize">total expenses in last ten quarters</h6>
+               <h3 class="text-center mt-4">@ViewBag.Static.Expenses $</h3>
+        </div>
+        <div class="card-footer">
+            <hr>
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="footer-title">Financial Statistics</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+</div>
+
+
+<div class="row offset-2"> 
+<div class="col-lg-4 col-sm-6">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="numbers pull-left">
+                    <i class="nc-icon nc-bag-16 text-primary font-weight-bolder" style="font-size: 50px;"></i>         
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <h6 class="big-title">total booked Halls </h6>
+                <h3 class="text-center mt-4">@ViewBag.TotbookedHall</h3>
+        </div>
+        <div class="card-footer">
+            <hr>
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="footer-title">Booking Order</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-4 col-sm-6">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="numbers pull-left">
+                    <i class="nc-icon nc-single-02 text-warning font-weight-bolder" style="font-size: 50px;"></i>         
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <h6 class="big-title">total User in last Day</h6>
+                <h3 class="text-center mt-4">@ViewBag.TotalUserEnter</h3>
+        </div>
+        <div class="card-footer">
+            <hr>
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="footer-title">Total User </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,144 @@
+﻿
+@model First_Project2.Models.UserInfo
+
+@{
+var log = (First_Project2.Models.Login)ViewBag.log;
+}
+
+<body class="">
+    <div class="content">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-user">
+                    <div class="image">
+                        <img src="~/DashboardAssests/img/damir-bosnjak.jpg" alt="...">
+                    </div>
+
+                    <div class="card-body">
+                        <div class="author">
+                            <a href="#">
+                                <img class="avatar border-gray" src=@Url.Content("~/Images/" + Model.ImagePath )
+                                    alt="...">
+                                <h5 class="title"> @Model.Fname @Model.Lname </h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card card-user">
+                    <div class="card-header">
+                        <h5 class="card-title">My Profile</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="container">
+                        <form asp-action="EditProfile" enctype="multipart/form-data">
+
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label asp-for="Fname" class="control-label"></label>
+                                        <input asp-for="Fname" class="form-control" />
+                                        <span asp-validation-for="Fname" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                       <label asp-for="Lname" class="control-label"></label>
+                                       <input asp-for="Lname" class="form-control" />
+                                       <span asp-validation-for="Lname" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label asp-for="Email" class="control-label"></label>
+                                        <input asp-for="Email" class="form-control" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                       <label asp-for="PhoneNumber" class="control-label"></label>
+                                       <input asp-for="PhoneNumber" class="form-control" />
+                                       <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input disabled type="text" class="form-control" value=@log.UserName>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input disabled type="text" class="form-control" value=@log.Password>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label asp-for="Gender" class="control-label"></label>
+                                        <select asp-for="Gender" class="form-control">
+                                            <option>Female</option>
+                                            <option>Male</option>
+                                        </select>
+                                        <span asp-validation-for="Gender" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label asp-for="DateOfBirth" class="control-label">Date Of Birth</label>
+                                        <input asp-for="DateOfBirth" class="form-control" />
+                                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label asp-for="Address" class="control-label"></label>
+                                        <input asp-for="Address" class="form-control" />
+                                        <span asp-validation-for="Address" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-5 mt-5 mb-5 text-center">
+                                <label asp-for="ImagePath" class="control-label">Current Image</label>
+                                        <br />
+                                        <img src=@Url.Content("~/Images/" + Model.ImagePath ) style="border-radius:20%"
+                                            width="100" height="100" />
+                                </div>
+                                <div class="col-md-5 mt-5 mb-5 text-center">
+                                    <h5 asp-for="ImageFile" class="control-label text-center mb-4 "> upload Image </h5>
+                                    <div class="upload-options">
+                                        <input asp-for="ImageFile" type="file" class="image-upload" accept="image/*" />
+                                        <span asp-validation-for="ImageFile" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group text-center">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                            <div class="form-group" style="position: relative; top: -50px;">
+                                <input type="submit" value="Back To Profile" asp-action="MyProfile" asp-controller="Dashboard" asp-route-id="@Model.Id" class="btn btn-success" />
+                            </div>
+                        </form>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
