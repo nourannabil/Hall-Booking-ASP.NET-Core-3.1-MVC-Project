@@ -120,14 +120,15 @@ namespace First_Project2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditProfile(decimal id, [Bind("Id,Fname,Lname,PhoneNumber,Email,Address,Gender,DateOfBirth,ImagePath,ImageFile")] UserInfo userInfo)
+        public async Task<IActionResult> EditProfile(decimal id, string password, [Bind("Id,Fname,Lname,PhoneNumber,Email,Address,Gender,DateOfBirth,ImagePath,ImageFile")] UserInfo userInfo)
         {
-            if (id != userInfo.Id)
+           
+                if (id != userInfo.Id)
             {
                 return NotFound();
             }
 
-            var log = _context.Logins.FirstOrDefault(x => x.UserId == id);
+            var log = _context.Logins.Where(x => x.UserId == userInfo.Id).SingleOrDefault();
             ViewBag.log = log;
 
             if (ModelState.IsValid)
@@ -145,8 +146,11 @@ namespace First_Project2.Controllers
                         }
                         userInfo.ImagePath = fileName;
                     }
-                    _context.Update(userInfo);
-                    await _context.SaveChangesAsync();
+
+                        log.Password = password;
+                        _context.Update(log);
+                        _context.Update(userInfo);
+                        await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -161,6 +165,7 @@ namespace First_Project2.Controllers
                 }
                 return RedirectToAction("MyProfile" , new { Id = id });
             }
+            
             return View(userInfo);
         }
 
