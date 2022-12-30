@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using First_Project2.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace First_Project2.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class StatisticsController : Controller
     {
         private readonly ModelContext _context;

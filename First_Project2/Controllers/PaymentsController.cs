@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using First_Project2.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace First_Project2.Controllers
 {
@@ -21,6 +22,7 @@ namespace First_Project2.Controllers
         }
 
         // GET: Payments
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             ViewBag.RoleId = HttpContext.Session.GetInt32("RoleId");
@@ -34,6 +36,7 @@ namespace First_Project2.Controllers
         }
 
         // GET: Payments/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(decimal? id)
         {
             if (id == null)

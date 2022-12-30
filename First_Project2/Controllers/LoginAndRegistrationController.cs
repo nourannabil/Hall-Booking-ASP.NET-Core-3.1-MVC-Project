@@ -88,7 +88,8 @@ namespace First_Project2.Controllers
 
                         var claims1 = new List<Claim>
                         {
-                         new Claim(ClaimTypes.NameIdentifier, Convert.ToString(auth.UserId))
+                         new Claim(ClaimTypes.NameIdentifier, Convert.ToString(auth.UserId)),
+                         new Claim(ClaimTypes.Role, "Admin")
                         };
 
                         var identity1 = new ClaimsIdentity(claims1, "canlog");
@@ -116,7 +117,8 @@ namespace First_Project2.Controllers
 
                         var claims2 = new List<Claim>
                         {
-                         new Claim(ClaimTypes.NameIdentifier, Convert.ToString(auth.UserId))
+                         new Claim(ClaimTypes.NameIdentifier, Convert.ToString(auth.UserId)),
+                         new Claim(ClaimTypes.Role, "User")
                         };
 
                         var identity2 = new ClaimsIdentity(claims2, "canlog");

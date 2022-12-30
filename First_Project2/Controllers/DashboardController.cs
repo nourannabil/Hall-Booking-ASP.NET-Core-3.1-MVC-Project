@@ -1,4 +1,5 @@
 ﻿using First_Project2.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,8 +24,8 @@ namespace First_Project2.Controllers
             this.webHostEnvironment = webHostEnvironment;
 
         }
-        
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Admin()
         {
             ViewBag.RoleId = HttpContext.Session.GetInt32("RoleId");
@@ -47,7 +48,8 @@ namespace First_Project2.Controllers
 
             return View();
         }
-        
+
+        [Authorize(Roles = "User")]
         public IActionResult Users()
         {
             ViewBag.RoleId = HttpContext.Session.GetInt32("RoleId");
@@ -62,6 +64,7 @@ namespace First_Project2.Controllers
             return View(hallCollection);
         }
 
+        [Authorize(Roles = "User,Admin")]
         public IActionResult MyProfile(decimal? id)
         {
          
@@ -91,6 +94,7 @@ namespace First_Project2.Controllers
             return View(userInfo);
         }
 
+        [Authorize(Roles = "User,Admin")]
         public async Task<IActionResult> EditProfile(decimal? id)
         {
             if (id == null)
@@ -117,7 +121,7 @@ namespace First_Project2.Controllers
             return View(userInfo);
         }
 
-
+        [Authorize(Roles = "User,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditProfile(decimal id, string password, [Bind("Id,Fname,Lname,PhoneNumber,Email,Address,Gender,DateOfBirth,ImagePath,ImageFile")] UserInfo userInfo)
@@ -175,6 +179,8 @@ namespace First_Project2.Controllers
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////
+        
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> MyBooking (decimal? id)
         {
             if (id == null)
@@ -207,7 +213,8 @@ namespace First_Project2.Controllers
         }
 
         ////////////Bill/////////////////////////////////////////////////////////////////////
-
+        
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Bill(decimal? id)
         {
             if (id == null)
@@ -237,6 +244,7 @@ namespace First_Project2.Controllers
 
         //////////////Report///////////////////////////////////////////////////////////////
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Report()
         {
@@ -293,7 +301,7 @@ namespace First_Project2.Controllers
             return View(model3);
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Report(DateTime? startDate, DateTime? endDate , DateTime? year)
         {
@@ -436,7 +444,7 @@ namespace First_Project2.Controllers
         }
 
         ///Charts////////////////////////////////////////////////////////////////////////////
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Chart()
         {
             ViewBag.RoleId = HttpContext.Session.GetInt32("RoleId");

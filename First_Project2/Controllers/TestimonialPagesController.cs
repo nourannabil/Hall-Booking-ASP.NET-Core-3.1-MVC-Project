@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using First_Project2.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace First_Project2.Controllers
 {
@@ -20,6 +21,7 @@ namespace First_Project2.Controllers
         }
 
         // GET: TestimonialPages
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             ViewBag.RoleId = HttpContext.Session.GetInt32("RoleId");
@@ -33,6 +35,7 @@ namespace First_Project2.Controllers
         }
 
         // GET: TestimonialPages/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(decimal? id)
         {
             if (id == null)
@@ -57,6 +60,7 @@ namespace First_Project2.Controllers
         }
 
         // GET: TestimonialPages/Create
+        [Authorize(Roles = "User")]
         public IActionResult Create(int id)
         {
             ViewBag.RoleId = HttpContext.Session.GetInt32("RoleId");
@@ -76,6 +80,8 @@ namespace First_Project2.Controllers
         // POST: TestimonialPages/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        [Authorize(Roles = "User")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(int id , [Bind("Id,Opinion,HomeId,UserId")] TestimonialPage testimonialPage)
@@ -101,7 +107,7 @@ namespace First_Project2.Controllers
 
         /// ///////////////////////////////////////////////////////////////
 
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateOpinion(int id)
         {
             using (var dbs = new ModelContext())
@@ -119,11 +125,12 @@ namespace First_Project2.Controllers
                 await dbs.SaveChangesAsync();
                 return RedirectToAction("Users", "Dashboard", new {Id = test.UserId});
             }
-        }                
+        }
 
         //////////////////////////////////////////////////////////////////////////
 
         // GET: TestimonialPages/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(decimal? id)
         {
             if (id == null)
@@ -149,6 +156,7 @@ namespace First_Project2.Controllers
         // POST: TestimonialPages/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(decimal id, [Bind("Id,Opinion,HomeId,UserId")] TestimonialPage testimonialPage)
@@ -183,6 +191,7 @@ namespace First_Project2.Controllers
         }
 
         // GET: TestimonialPages/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(decimal? id)
         {
             if (id == null)

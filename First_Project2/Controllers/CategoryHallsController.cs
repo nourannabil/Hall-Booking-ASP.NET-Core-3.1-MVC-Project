@@ -9,9 +9,11 @@ using First_Project2.Models;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace First_Project2.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoryHallsController : Controller
     {
         private readonly ModelContext _context;

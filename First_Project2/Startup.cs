@@ -39,8 +39,11 @@ namespace First_Project2
             {
                 options.Cookie.Name = "canlog";
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                // options.AccessDeniedPath ==? to change the view that will apper when he is not athourized 
+                // becouse the default view that will show is /Account/AccessDenied?
+                // do now i make it to go to login page 
+                options.AccessDeniedPath = "/LoginAndRegistration/LoginIn";
             });
-
 
             services.AddRazorPages();
 

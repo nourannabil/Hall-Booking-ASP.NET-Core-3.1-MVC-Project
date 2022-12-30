@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using First_Project2.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace First_Project2.Controllers
 {
@@ -20,6 +21,7 @@ namespace First_Project2.Controllers
         }
 
         // GET: HallBookings
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             ViewBag.RoleId = HttpContext.Session.GetInt32("RoleId");
@@ -32,6 +34,7 @@ namespace First_Project2.Controllers
         }
 
         // GET: HallBookings/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(decimal? id)
         {
             if (id == null)
@@ -58,6 +61,7 @@ namespace First_Project2.Controllers
         }
 
         // GET: HallBookings/Create
+        [Authorize(Roles = "User")]
         public IActionResult Create(int id)
         {
             ViewBag.RoleId = HttpContext.Session.GetInt32("RoleId");
@@ -94,6 +98,7 @@ namespace First_Project2.Controllers
         // POST: HallBookings/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "User")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BookingDate,BookingTime,CategoryId,HallId,UserId")] HallBooking hallBooking, int id)
@@ -185,6 +190,7 @@ namespace First_Project2.Controllers
         }
 
         // GET: HallBookings/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(decimal? id)
         {
             if (id == null)
@@ -210,6 +216,7 @@ namespace First_Project2.Controllers
         // POST: HallBookings/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(decimal id, [Bind("Id,BookingDate,BookingTime,CategoryId,HallId,UserId")] HallBooking hallBooking)
@@ -245,6 +252,7 @@ namespace First_Project2.Controllers
         }
 
         // GET: HallBookings/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(decimal? id)
         {
             if (id == null)

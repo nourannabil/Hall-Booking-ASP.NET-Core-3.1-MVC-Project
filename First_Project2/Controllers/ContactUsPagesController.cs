@@ -9,6 +9,7 @@ using First_Project2.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace First_Project2.Controllers
 {
@@ -23,6 +24,7 @@ namespace First_Project2.Controllers
         }
 
         // GET: ContactUsPages
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             ViewBag.RoleId = HttpContext.Session.GetInt32("RoleId");
@@ -35,6 +37,7 @@ namespace First_Project2.Controllers
         }
 
         // GET: ContactUsPages/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(decimal? id)
         {
             if (id == null)
@@ -175,6 +178,7 @@ namespace First_Project2.Controllers
         }
 
         // GET: ContactUsPages/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(decimal? id)
         {
             if (id == null)
