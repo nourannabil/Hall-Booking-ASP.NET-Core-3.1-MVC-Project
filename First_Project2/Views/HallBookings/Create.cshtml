@@ -133,7 +133,14 @@
 
                 <div class="error-msg text-center ">
                     <p style="color:red; ">
-                        <span>@ViewData["message"] </span>
+                        @*<span>@ViewData["message"] </span>*@
+                        @if(@ViewData["message"] != null)
+                        {
+                            <script>
+                                alert("Please Select Another Day, This Day Not Available")
+                            </script>
+                        }
+                             
                     </p>
                 </div>
             </div>

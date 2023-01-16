@@ -133,6 +133,7 @@ namespace First_Project2.Controllers
                     {
                         if (hallBooking.BookingDate > item2.BookingDate || hallBooking.BookingDate < item2.BookingDate)
                         {
+                            ViewData["Message"] = null;
                             list.Add(hallBooking);
                         }
                         else
