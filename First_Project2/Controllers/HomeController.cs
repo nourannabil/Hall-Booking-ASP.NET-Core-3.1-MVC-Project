@@ -207,20 +207,20 @@ namespace First_Project2.Controllers
             {
                 ViewBag.Name = hallName;
                 ViewBag.Location = location;
-                var modelContext = _context.Halls.ToList().Where(x => x.Name.StartsWith(hallName));
+                var modelContext = _context.Halls.ToList().Where(x => x.Name.ToUpper().StartsWith(hallName.ToUpper()));
                 return View(modelContext);
 
             } else if (hallName == null && location != null)
             {
                 ViewBag.Name = hallName;
-                ViewBag.Location = location;
-                var modelContext = _context.Halls.ToList().Where(x => x.Location.StartsWith(location));
+                ViewBag.Location = location.ToUpper();
+                var modelContext = _context.Halls.ToList().Where(x => x.Location.ToUpper().StartsWith(location.ToUpper()));
                 return View(modelContext);
             }else
             {
-                ViewBag.Name = hallName;
-                ViewBag.Location = location;
-                var modelContext = _context.Halls.ToList().Where(x => x.Name.StartsWith(hallName) && x.Location.StartsWith(location));
+                ViewBag.Name = hallName.ToUpper();
+                ViewBag.Location = location.ToUpper();
+                var modelContext = _context.Halls.ToList().Where(x => x.Name.ToUpper().StartsWith(hallName.ToUpper()) && x.Location.ToUpper().StartsWith(location.ToUpper()));
                 return View(modelContext);
             }
         }
